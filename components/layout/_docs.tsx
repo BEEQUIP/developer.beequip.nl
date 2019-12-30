@@ -4,6 +4,7 @@ import { Heading, theme } from '@beequip/hexagon'
 import { Container } from './container'
 import { Navbar } from './navbar'
 import { markdownComponents } from '@beequip/dev-lib/mdx-components'
+import { Head } from '@beequip/dev-components/layout/head'
 
 const Main = styled.main`
     min-height: 100vh;
@@ -34,6 +35,8 @@ const DocH4 = styled(Heading)`
 `
 
 export const Docs = props => {
+    const { meta } = props
+
     return (
         <MDXProvider
             components={{
@@ -43,6 +46,12 @@ export const Docs = props => {
                 h4: props => <DocH4 {...props} size={4} />,
             }}
         >
+            <Head
+                title={meta.title}
+                description={meta.description}
+                titlePrefix=""
+                titleSuffix="– Beequip Developer"
+            />
             <Navbar />
             <Main>
                 <Container maxWidth={1024}>{props.children}</Container>

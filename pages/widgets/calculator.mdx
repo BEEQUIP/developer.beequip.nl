@@ -1,5 +1,10 @@
 import { Docs } from '@beequip/dev-components/layout/_docs'
 
+export const meta = {
+    title: 'Embed our calculator widget',
+    description: 'Get started with adding our calculator widget to your website.',
+}
+
 # Calculator widget
 
 ## Embed Beequip lease calculations into your site.   
@@ -151,4 +156,4 @@ ID | Description in Dutch | Description in English
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-export default ({ children }) => <Docs>{children}</Docs>
+export default ({ children }) => <Docs meta={meta}>{children}</Docs>

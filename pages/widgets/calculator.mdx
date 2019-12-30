@@ -1,0 +1,154 @@
+import { Docs } from '@beequip/dev-components/layout/_docs'
+
+# Calculator widget
+
+## Embed Beequip lease calculations into your site.   
+
+The calculator widget works best when placed on pages that showcase a single piece
+of equipment so its data can be used in the calculations. The widget has several 
+configuration parameters, which you can read about below.
+
+## Getting started
+
+1. Add a piece of HTML to your web page with class `beequip-calculator`, where you want 
+the calculator widget to render.
+
+```
+<a href="https://lease.beequip.nl" class="beequip-calculator">Lease equipment bij Beequip</a>
+```
+
+2. Add the [required parameters](#required-parameters) with data-attributes, as described below.
+
+```
+<a href="https://lease.beequip.nl" class="beequip-calculator" data-brand="Caterpillar">
+    Lease equipment bij Beequip
+</a>
+```
+
+3. Add a reference to a script hosted by Beequip, that will build the widget.
+
+```
+<a href="https://lease.beequip.nl" class="beequip-calculator" data-category-id="13" data-brand="Caterpillar">
+    Lease equipment bij Beequip
+</a>
+<script async src="https://widgets.beequip.nl/embed.js"></script>
+```
+
+## How it works
+
+### Parameters
+
+You can supply parameters to the widget to influence the layout, configure the calculation, 
+or to pre-fill the widget’s input fields with data from your product’s page.
+
+#### Required parameters
+
+These parameters must be supplied via `data-` attributes, otherwise the widget will not work.
+
+---
+
+##### `brand` string
+
+The brand/manufacturer of the equipment.
+
+```
+<div data-brand="Caterpillar">
+```
+
+##### `model` string
+
+The model of the equipment.
+
+```
+<div data-model="AS 450">
+```
+
+##### `year` integer
+
+The year the equipment was built.
+
+```
+<div data-year="2017">
+```
+
+---
+
+#### Optional parameters
+
+---
+
+##### `category-id` integer 
+
+With the category ID you can supply the asset category the equipment belongs to. Lookup the appropriate ID in 
+the [category table](#available-categories).   
+If you do not supply the category ID, a dropdown will be rendered where the user must choose a category.
+
+```
+<div data-category-id="3">
+```
+
+##### `object-used` boolean
+
+Indicates the condition the equipment is in. `true` if it is used, `false` if it is new.   
+Defaults to `true`.
+
+```
+<div data-object-used="false">
+```
+
+##### `purchase-price` decimal
+
+The amount it costs to buy the equipment. This value is shown in an input field, and
+can be changed by the user.
+
+```
+<div data-purchase-price="30000">
+```
+
+##### `width` integer
+
+The width of the rendered widget, in pixels. Defaults to 300.
+
+```
+<div data-width="400">
+```
+
+##### `height` integer
+
+The height of the rendered widget, in pixels. Defaults to 300.
+
+```
+<div data-width="600">
+```
+
+---
+
+### Available categories
+
+ID | Description in Dutch | Description in English
+-- | -------------------- | ----------------------
+1 | Energie | Energy
+2 | Grondverzet | Earthmoving
+3 | Wegtransport | Road transport
+4 | Containers | Containers
+5 | Bouw | Construction
+6 | Heftrucks | Forklifts
+7 | Kranen | Cranes
+8 | Agrarisch | Agriculture
+11 | Haven | Harbour
+12 | Recycling | Recycling
+13 | Maritiem | Maritime
+15 | Metaalbewerking | Metal processing
+
+## Examples
+
+### Widget with all available attributes
+
+<p className="codepen" data-height="300" data-theme-id="default" data-default-tab="html,result" data-user="beequip" data-slug-hash="GRgvYaZ" data-pen-title="Lease calculator with all attributes">
+  <span>See the Pen <a href="https://codepen.io/beequip/pen/GRgvYaZ">
+  Lease calculator with all attributes</a> by Beequip (<a href="https://codepen.io/beequip">@beequip</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+export default ({ children }) => <Docs>{children}</Docs>

@@ -1,0 +1,37 @@
+{
+  "name": "developer.beequip.nl",
+  "version": "0.1.0",
+  "description": "Developer portal for Beequip",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.beequip.nl:BEEQUIP/developer.beequip.nl.git"
+  },
+  "author": "Beequip <info@beequip.nl>",
+  "license": "MIT",
+  "dependencies": {
+    "@beequip/hexagon": "^0.1.2",
+    "@mdx-js/loader": "^1.5.2",
+    "@mdx-js/tag": "^0.20.3",
+    "@next/mdx": "^9.1.6",
+    "next": "^9.1.4",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
+    "remark-slug": "^5.1.2",
+    "styled-components": "^4.4.1",
+    "styled-icons": "^9.0.1",
+    "styled-map": "^3.3.0",
+    "tsconfig-paths-webpack-plugin": "^3.2.0"
+  },
+  "devDependencies": {
+    "@beequip/eslint-config-react-typescript": "^0.1.1",
+    "@types/react": "^16.9.16",
+    "babel-plugin-styled-components": "^1.10.6"
+  }
+}

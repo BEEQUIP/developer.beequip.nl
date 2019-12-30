@@ -50,7 +50,7 @@ export const Docs = props => {
                 title={meta.title}
                 description={meta.description}
                 titlePrefix=""
-                titleSuffix="– Beequip Developer"
+                titleSuffix=" – Beequip Developer"
             />
             <Navbar />
             <Main>

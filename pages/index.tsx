@@ -45,7 +45,13 @@ const StyledLink = styled.a`
 
 export default function Home() {
     return (
-        <Introduction>
+        <Introduction
+            meta={{
+                title: 'Beequip for Developers – Documentation',
+                description:
+                    'Developer resources for Beequip equipment leasing',
+            }}
+        >
             <Jumbotron>
                 <Heading size={1}>
                     Developer resources for Beequip equipment leasing

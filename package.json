@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@gitlab.beequip.nl:BEEQUIP/developer.beequip.nl.git"
+    "url": "git@github.com:BEEQUIP/developer.beequip.nl.git"
   },
   "author": "Beequip <info@beequip.nl>",
   "license": "MIT",

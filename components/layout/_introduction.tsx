@@ -12,7 +12,7 @@ export const Introduction = props => {
                 title={meta.title}
                 description={meta.description}
                 titlePrefix=""
-                titleSuffix="– Beequip Developer"
+                titleSuffix=""
             />
             <Navbar />
             {props.children}

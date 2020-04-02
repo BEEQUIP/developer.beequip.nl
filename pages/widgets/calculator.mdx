@@ -15,7 +15,7 @@ configuration parameters, which you can read about below.
 
 ## Getting started
 
-1. Add a piece of HTML to your web page with class `beequip-calculator`, where you want 
+1. Add a piece of HTML to your web page with class `beequip-calculator`, in a location where you want 
 the calculator widget to render.
 
 ```
@@ -30,7 +30,7 @@ the calculator widget to render.
 </a>
 ```
 
-3. Add a reference to a script hosted by Beequip, that will build the widget.
+3. Add a reference to a script hosted by Beequip. This script will render the widget.
 
 ```
 <a href="https://lease.beequip.nl" class="beequip-calculator" data-category-id="13" data-brand="Caterpillar">
@@ -62,12 +62,16 @@ in the Beeport. ([More information about Beeport and getting an account](https:/
 
 You can find your token on the settings page in your Beeport account.
 
+```
+<a data-token="Xhpx7QT6xRF9ZHyABrxmm12Q">
+```
+
 ##### `brand` string
 
 The brand/manufacturer of the equipment.
 
 ```
-<div data-brand="Caterpillar">
+<a data-brand="Caterpillar">
 ```
 
 ##### `model` string
@@ -75,7 +79,7 @@ The brand/manufacturer of the equipment.
 The model of the equipment.
 
 ```
-<div data-model="AS 450">
+<a data-model="AS 450">
 ```
 
 ##### `year` integer
@@ -83,7 +87,7 @@ The model of the equipment.
 The year the equipment was built.
 
 ```
-<div data-year="2017">
+<a data-year="2017">
 ```
 
 ---
@@ -99,7 +103,7 @@ the [category table](#available-categories).
 If you do not supply the category ID, a dropdown will be rendered where the user must choose a category.
 
 ```
-<div data-category-id="3">
+<a data-category-id="3">
 ```
 
 ##### `object-used` boolean
@@ -108,7 +112,7 @@ Indicates the condition the equipment is in. `true` if it is used, `false` if it
 Defaults to `true`.
 
 ```
-<div data-object-used="false">
+<a data-object-used="false">
 ```
 
 ##### `purchase-price` decimal
@@ -117,7 +121,7 @@ The amount it costs to buy the equipment. This value is shown in an input field,
 can be changed by the user.
 
 ```
-<div data-purchase-price="30000">
+<a data-purchase-price="30000">
 ```
 
 ##### `width` integer
@@ -125,7 +129,7 @@ can be changed by the user.
 The width of the rendered widget, in pixels. Defaults to 300.
 
 ```
-<div data-width="400">
+<a data-width="400">
 ```
 
 ##### `height` integer
@@ -133,7 +137,7 @@ The width of the rendered widget, in pixels. Defaults to 300.
 The height of the rendered widget, in pixels. Defaults to 300.
 
 ```
-<div data-width="600">
+<a data-width="600">
 ```
 
 ---

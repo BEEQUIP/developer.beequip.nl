@@ -1,4 +1,6 @@
 import { Docs } from '@beequip/dev-components/layout/_docs'
+import { RequestToken } from '@beequip/dev-components/intermediary/RequestToken'
+import { withApollo } from '@beequip/dev-lib/withApollo'
 
 export const meta = {
     title: 'Embed our calculator widget',
@@ -54,17 +56,22 @@ These parameters must be supplied via `data-` attributes, otherwise the widget w
 
 ##### `token` string
 
-We use a unique token as an identifier for your organisation. This way, we can:
- 
-- Use your interest rates in the lease calculations that the widget performs.
-- Track if a customer requests a deal coming from your website, and show that deal 
-in the Beeport. ([More information about Beeport and getting an account](https://www.beequip.nl/beeport/).)
-
-You can find your token on the settings page in your Beeport account.
+We use a unique token as an identifier for your organisation. 
 
 ```
 <a data-token="Xhpx7QT6xRF9ZHyABrxmm12Q">
 ```
+
+By adding this token to your widget, we can:
+ 
+- Use your interest rates and pricing agreements in the lease calculations that the widget performs.
+- Track if a customer requests a deal coming from your website, and show that deal 
+in the Beeport. ([More information about Beeport and getting an account](https://www.beequip.nl/beeport/).)
+
+You can find your token on the settings page in your Beeport account.   
+If you don't have a Beeport account, you can request a token with this form:
+
+<RequestToken />
 
 ##### `brand` string
 
@@ -170,4 +177,4 @@ ID | Description in Dutch | Description in English
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-export default ({ children }) => <Docs meta={meta}>{children}</Docs>
+export default withApollo()(({ children }) => <Docs meta={meta}>{children}</Docs>)

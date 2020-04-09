@@ -6,6 +6,7 @@ import { Container } from '@beequip/dev-components/layout/container'
 const Nav = styled.nav`
     position: sticky;
     top: 0;
+    z-index: 1;
     display: flex;
     padding: ${props => props.theme.spacing[1]}px;
     background-color: ${props => props.theme.colors.black};

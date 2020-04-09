@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Heading, Text } from '@beequip/hexagon'
+import { Heading, Text, Table, Head, Body, Row, Cell } from '@beequip/hexagon'
 
 const Pre = styled.pre`
     margin-bottom: ${props => props.theme.spacing[2]}px;
@@ -17,6 +17,10 @@ const HR = styled.hr`
     border-style: solid;
 `
 
+const TableHeadCell = styled.th`
+    text-align: left;
+`
+
 export const markdownComponents = {
     h1: props => <Heading {...props} size={1} />,
     h2: props => <Heading {...props} size={2} />,
@@ -27,4 +31,10 @@ export const markdownComponents = {
     p: props => <Text {...props} bottomMargin={2} />,
     pre: Pre,
     hr: HR,
+    table: Table,
+    thead: Head,
+    tbody: Body,
+    tr: Row,
+    th: TableHeadCell,
+    td: Cell,
 }

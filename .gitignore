@@ -1,8 +1,13 @@
-# Builds
+# Builds and environments
 .next
+.now
+.env
 
 # Dependencies
 node_modules
 
 # Logging
 *.log
+
+# Development
+graphql.schema.json

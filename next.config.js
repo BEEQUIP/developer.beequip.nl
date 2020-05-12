@@ -2,8 +2,8 @@ const markdownSlug = require('remark-slug')
 const withMDX = require('@next/mdx')({
     extension: /\.mdx?$/,
     options: {
-        remarkPlugins: [markdownSlug]
-    }
+        remarkPlugins: [markdownSlug],
+    },
 })
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
@@ -23,5 +23,8 @@ module.exports = withMDX({
         }
 
         return config
+    },
+    env: {
+        BEEQUIP_API: process.env.BEEQUIP_API,
     },
 })

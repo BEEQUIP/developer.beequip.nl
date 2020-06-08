@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { PublicCreateIntermediaryInputType } from "./globalTypes";
+import { PublicCreateIntermediaryInput } from "./globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: PublicCreateIntermediary
@@ -29,5 +29,5 @@ export interface PublicCreateIntermediary {
 }
 
 export interface PublicCreateIntermediaryVariables {
-  input?: PublicCreateIntermediaryInputType | null;
+  input?: PublicCreateIntermediaryInput | null;
 }

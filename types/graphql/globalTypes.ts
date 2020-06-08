@@ -10,7 +10,7 @@
 /**
  * Properties for signing up as an intermediary
  */
-export interface PublicCreateIntermediaryInputType {
+export interface PublicCreateIntermediaryInput {
   name: string;
   cocNumber?: string | null;
 }

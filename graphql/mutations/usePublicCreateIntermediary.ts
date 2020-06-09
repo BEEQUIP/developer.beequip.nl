@@ -7,7 +7,7 @@ import gql from 'graphql-tag'
 
 const mutation = gql`
     mutation PublicCreateIntermediary(
-        $input: PublicCreateIntermediaryInputType
+        $input: PublicCreateIntermediaryInput
     ) {
         publicCreateIntermediary(input: $input) {
             intermediary {

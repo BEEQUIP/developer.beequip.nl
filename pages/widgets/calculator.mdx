@@ -156,9 +156,15 @@ Customize the color scheme of the widget. Possible values are:
 - `dark`: the widget renders with a dark-grey background and white text.
 - `light`: the widget renders with a white background and dark-grey text.
 - `custom`: the widget renders with custom colors. These colors can be supplied with 
-4 other data-attributes: `data-color`, `data-background-color`, `data-button-color`, and 
-`data-button-background-color`.    
-⚠ All 4 color attributes must be supplied in order for the custom theme to work.
+6 other data-attributes:
+   - `data-color`
+   - `data-background-color`
+   - `data-primary-button-color`
+   - `data-primary-button-background-color`
+   - `data-secondary-button-background-color`
+   - `data-secondary-button-background-color`
+
+⚠ All color attributes must be supplied, otherwise the custom theme won’t be applied.
 
 Defaults to `light`.
 
@@ -168,7 +174,7 @@ Defaults to `light`.
 
 ##### `color` string
 
-This will change the text color of the body copy to the given value. The value 
+This will set the text color of the body copy to the given value. The value
 can be any valid CSS color.
 
 ```
@@ -177,29 +183,47 @@ can be any valid CSS color.
 
 ##### `background-color` string
 
-This will change the background color of the entire widget to the given value. The value 
+This will set the background color of the entire widget to the given value. The value
 can be any valid CSS color.
 
 ```
 <a data-background-color="rgb(255, 161, 0)">
 ```
 
-##### `button-color` string
+##### `primary-button-color` string
 
-This will change the text color of the submit button to the given value. The value 
+This will set the text color of the primary button to the given value. The value
 can be any valid CSS color.
 
 ```
-<a data-button-color="#056fff">
+<a data-primary-button-color="#056fff">
 ```
 
-##### `button-background-color` string
+##### `primary-button-background-color` string
 
-This will change the background color of the submit button to the given value. The value 
+This will set the background color of the primary button to the given value. The value
 can be any valid CSS color.
 
 ```
-<a data-button-background-color="rgb(0, 0, 0)">
+<a data-primary-button-background-color="rgb(0, 0, 0)">
+```
+
+##### `secondary-button-color` string
+
+This will set the text color of the secondary button to the given value. The value
+can be any valid CSS color.
+
+```
+<a data-secondary-button-color="#056fff">
+```
+
+##### `secondary-button-background-color` string
+
+This will set the background color of the secondary button to the given value. The value
+can be any valid CSS color.
+
+```
+<a data-secondary-button-background-color="rgb(0, 0, 0)">
 ```
 
 ##### `show-logo` boolean

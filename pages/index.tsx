@@ -73,7 +73,7 @@ export default function Home() {
                         <WidgetCard>
                             <div>
                                 <Heading size={4}>
-                                    <Link href="/widgets/calculator" passHref>
+                                    <Link href="/docs/widgets/calculator" passHref>
                                         <StyledLink>
                                             Embed our lease calculator
                                         </StyledLink>

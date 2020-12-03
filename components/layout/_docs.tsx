@@ -14,27 +14,27 @@ const Main = styled.main`
     padding-left: ${props => props.theme.spacing[2]}px;
 `
 
-const DocH2 = styled(Heading)`
-    margin-top: ${props => props.theme.spacing[3]}px;
+// const DocH2 = styled(Heading)`
+//     margin-top: ${props => props.theme.spacing[3]}px;
 
-    h1 + & {
-        margin-top: 0;
-    }
-`
+//     h1 + & {
+//         margin-top: 0;
+//     }
+// `
 
-const DocH3 = styled(Heading)`
-    margin-top: ${props => props.theme.spacing[3]}px;
+// const DocH3 = styled(Heading)`
+//     margin-top: ${props => props.theme.spacing[3]}px;
 
-    h2 + & {
-        margin-top: 0;
-    }
-`
+//     h2 + & {
+//         margin-top: 0;
+//     }
+// `
 
-const DocH4 = styled(Heading)`
-    margin-top: ${props => props.theme.spacing[2]}px;
-`
+// const DocH4 = styled(Heading)`
+//     margin-top: ${props => props.theme.spacing[2]}px;
+// `
 
-export const Docs = props => {
+export const DocsLayout = props => {
     const { meta } = props
 
     return (

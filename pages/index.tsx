@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 import { Calculator } from 'styled-icons/fa-solid/Calculator/Calculator'
-import { Box, Heading, Text, media } from '@beequip/hexagon'
+import { CodeBranch } from 'styled-icons/fa-solid/CodeBranch/CodeBranch'
+import { Box, Heading, Text, media, theme } from '@beequip/hexagon'
 import {
     Container,
     Jumbotron,
@@ -25,6 +26,10 @@ const CardBase = styled.article`
 `
 
 const WidgetCard = styled(CardBase)`
+    box-shadow: ${props => props.theme.shadow};
+`
+
+const ApiCard = styled(CardBase)`
     box-shadow: ${props => props.theme.shadow};
 `
 
@@ -81,6 +86,21 @@ export default function Home() {
                             </div>
                             <Icon size={48} />
                         </WidgetCard>
+                        <ApiCard>
+                            <div>
+                                <Heading size={4}>
+                                    <Link href="/graphql" passHref>
+                                        <StyledLink>
+                                            Connect with our API
+                                        </StyledLink>
+                                    </Link>
+                                </Heading>
+                                <Text>
+                                    Build your own custom calculator to let anyone request leases at Beequip.
+                                </Text>
+                            </div>
+                            <CodeBranch color={theme.colors.primary} size={48} />
+                        </ApiCard>
                         <MessageCard background="grey">
                             <Heading size={4}>Other integrations</Heading>
                             <Text>

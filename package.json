@@ -4,7 +4,7 @@
     "description": "Developer portal for Beequip",
     "main": "index.js",
     "scripts": {
-        "dev": "next",
+        "dev": "next --port 3001",
         "build": "next build",
         "start": "next start",
         "graphql:all": "yarn run graphql:download-schema && yarn run graphql:clean-generated-types && yarn run graphql:generate-types",

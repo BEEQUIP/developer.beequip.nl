@@ -38,14 +38,7 @@ export const DocsLayout = props => {
     const { meta } = props
 
     return (
-        <MDXProvider
-            components={{
-                ...markdownComponents,
-                h2: props => <DocH2 {...props} size={2} />,
-                h3: props => <DocH3 {...props} size={3} />,
-                h4: props => <DocH4 {...props} size={4} />,
-            }}
-        >
+        <>
             <Head
                 title={meta.title}
                 description={meta.description}
@@ -56,6 +49,6 @@ export const DocsLayout = props => {
             <Main>
                 <Container maxWidth={1024}>{props.children}</Container>
             </Main>
-        </MDXProvider>
+        </>
     )
 }

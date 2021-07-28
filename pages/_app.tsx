@@ -1,6 +1,7 @@
-import App from 'next/app'
 import React from 'react'
 import { ThemeProvider, createGlobalStyle } from 'styled-components'
+import { ApolloProvider } from '@apollo/client'
+import { useApollo } from '@/lib/apolloClient'
 import { theme } from '@beequip/hexagon'
 import '../node_modules/normalize.css/normalize.css'
 
@@ -32,19 +33,20 @@ const GlobalStyle = createGlobalStyle`
         font-display: fallback;
     }
 `
-export default class DeveloperApp extends App {
-    render() {
-        const { Component, pageProps } = this.props
-        theme.font.default = `'Gotham Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;`
-        theme.font.heading = `'Gotham Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;`
+export default function App({ Component, pageProps }) {
+    const apolloClient = useApollo(pageProps)
 
-        return (
-            <>
-                <GlobalStyle />
+    theme.font.default = `'Gotham Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;`
+    theme.font.heading = `'Gotham Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;`
+
+    return (
+        <>
+            <GlobalStyle />
+            <ApolloProvider client={apolloClient}>
                 <ThemeProvider theme={theme}>
                     <Component {...pageProps} />
                 </ThemeProvider>
-            </>
-        )
-    }
+            </ApolloProvider>
+        </>
+    )
 }

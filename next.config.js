@@ -24,7 +24,4 @@ module.exports = withMDX({
 
         return config
     },
-    env: {
-        BEEQUIP_API: process.env.BEEQUIP_API,
-    },
 })

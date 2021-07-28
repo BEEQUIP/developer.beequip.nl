@@ -1,4 +1,4 @@
-import { ApolloError } from 'apollo-client'
+import { ApolloError } from '@apollo/client'
 
 export const getGraphQLError = (key: string, error?: ApolloError) => {
     if (error === undefined) {

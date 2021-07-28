@@ -2,11 +2,9 @@ import styled from 'styled-components'
 import Link from 'next/link'
 import { Calculator } from 'styled-icons/fa-solid/Calculator/Calculator'
 import { Box, Heading, Text, media } from '@beequip/hexagon'
-import {
-    Container,
-    Jumbotron,
-    Introduction,
-} from '@beequip/dev-components/layout'
+import { Container } from '@/components/container'
+import { Jumbotron } from '@/components/jumbotron'
+import { HomeLayout } from '@/components/home-layout'
 
 const TaskGrid = styled.div`
     display: grid;
@@ -45,7 +43,7 @@ const StyledLink = styled.a`
 
 export default function Home() {
     return (
-        <Introduction
+        <HomeLayout
             meta={{
                 title: 'Beequip for Developers – Documentation',
                 description:
@@ -91,6 +89,6 @@ export default function Home() {
                     </TaskGrid>
                 </Container>
             </Box>
-        </Introduction>
+        </HomeLayout>
     )
 }

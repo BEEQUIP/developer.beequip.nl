@@ -1,8 +1,8 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
-import { Global } from '@beequip/dev-lib/style/global'
-import { Normalize } from '@beequip/dev-lib/style/normalize'
-import { Webfonts } from '@beequip/dev-lib/style/webfonts'
+import { Global } from '@/lib/style/global'
+import { Normalize } from '@/lib/style/normalize'
+import { Webfonts } from '@/lib/style/webfonts'
 
 export default class PortalDocument extends Document {
     static async getInitialProps(ctx) {

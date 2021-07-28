@@ -15,10 +15,10 @@
         "jsx": "preserve",
         "baseUrl": "./",
         "paths": {
-            "@beequip/dev-components/*": ["components/*"],
-            "@beequip/dev-lib/*": ["lib/*"],
-            "@beequip/dev-graphql/*": ["graphql/*"],
-            "@beequip/dev-types/*": ["types/*"]
+            "@/components/*": ["components/*"],
+            "@/lib/*": ["lib/*"],
+            "@/graphql/*": ["graphql/*"],
+            "@/types/*": ["types/*"]
         }
     },
     "exclude": ["node_modules"],

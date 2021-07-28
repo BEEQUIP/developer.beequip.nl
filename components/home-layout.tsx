@@ -1,9 +1,9 @@
 import { MDXProvider } from '@mdx-js/react'
 import { Navbar } from './navbar'
-import { markdownComponents } from '@beequip/dev-lib/mdx-components'
-import { Head } from '@beequip/dev-components/layout/head'
+import { markdownComponents } from '@/lib/mdx-components'
+import { Head } from '@/components/head'
 
-export const Introduction = props => {
+export function HomeLayout(props): JSX.Element {
     const { meta } = props
 
     return (

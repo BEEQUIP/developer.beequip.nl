@@ -2,7 +2,7 @@ import { useMutation } from '@apollo/react-hooks'
 import {
     PublicCreateIntermediary as Data,
     PublicCreateIntermediaryVariables as Variables,
-} from '@beequip/dev-types/graphql/PublicCreateIntermediary'
+} from '@/types/graphql/PublicCreateIntermediary'
 import gql from 'graphql-tag'
 
 const mutation = gql`
@@ -22,6 +22,6 @@ const mutation = gql`
     }
 `
 
-export const usePublicCreateIntermediary = () => {
+export function usePublicCreateIntermediary() {
     return useMutation<Data, Variables>(mutation)
 }

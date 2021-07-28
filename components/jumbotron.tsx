@@ -29,8 +29,10 @@ const PatternContainer = styled.section`
 `
 
 
-export const Jumbotron = props => (
-    <PatternContainer>
-        <Container>{props.children}</Container>
-    </PatternContainer>
-)
+export function Jumbotron(props): JSX.Element {
+    return (
+        <PatternContainer>
+            <Container>{props.children}</Container>
+        </PatternContainer>
+    )
+}

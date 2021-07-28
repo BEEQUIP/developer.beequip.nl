@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 import { MDXProvider } from '@mdx-js/react'
-import { Heading, theme } from '@beequip/hexagon'
+import { Heading } from '@beequip/hexagon'
 import { Container } from './container'
 import { Navbar } from './navbar'
-import { markdownComponents } from '@beequip/dev-lib/mdx-components'
-import { Head } from '@beequip/dev-components/layout/head'
+import { markdownComponents } from '@/lib/mdx-components'
+import { Head } from '@/components/head'
 
 const Main = styled.main`
     min-height: 100vh;
@@ -34,7 +34,7 @@ const DocH4 = styled(Heading)`
     margin-top: ${props => props.theme.spacing[2]}px;
 `
 
-export const Docs = props => {
+export function DocsLayout(props): JSX.Element {
     const { meta } = props
 
     return (

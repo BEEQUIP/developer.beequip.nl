@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Link from 'next/link'
-import { FullLogo } from '@beequip/dev-components/logos/full'
-import { Container } from '@beequip/dev-components/layout/container'
+import { FullLogo } from '@/components/logos/full'
+import { Container } from '@/components/container'
 
 const Nav = styled.nav`
     position: sticky;
@@ -29,17 +29,19 @@ const StyledLink = styled.a`
     text-decoration: none;
 `
 
-export const Navbar = () => (
-    <Nav>
-        <Container>
-            <Link href="/" passHref>
-                <StyledLink>
-                    <LogoContainer>
-                        <FullLogo width={24} height={33} />
-                        <Beequip>BEEQUIP</Beequip> Developer
-                    </LogoContainer>
-                </StyledLink>
-            </Link>
-        </Container>
-    </Nav>
-)
+export function Navbar(): JSX.Element {
+    return (
+        <Nav>
+            <Container>
+                <Link href="/" passHref>
+                    <StyledLink>
+                        <LogoContainer>
+                            <FullLogo width={24} height={33} />
+                            <Beequip>BEEQUIP</Beequip> Developer
+                        </LogoContainer>
+                    </StyledLink>
+                </Link>
+            </Container>
+        </Nav>
+    )
+}

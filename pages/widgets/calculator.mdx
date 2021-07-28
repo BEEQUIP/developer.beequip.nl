@@ -1,6 +1,6 @@
-import { Docs } from '@beequip/dev-components/layout/_docs'
-import { RequestToken } from '@beequip/dev-components/intermediary/RequestToken'
-import { withApollo } from '@beequip/dev-lib/withApollo'
+import { DocsLayout } from '@/components/docs-layout'
+import { RequestToken } from '@/components/intermediary/request-token'
+import { withApollo } from '@/lib/withApollo'
 
 export const meta = {
     title: 'Embed our calculator widget',
@@ -292,4 +292,4 @@ Common causes of problems are:
 - One of the theming parameters has an incorrect value. The widget tries to build a working theme from the supplied parameters, and it
   will fail if a theming parameter is not a valid CSS color.
 
-export default withApollo()(({ children }) => <Docs meta={meta}>{children}</Docs>)
+export default withApollo()(({ children }) => <DocsLayout meta={meta}>{children}</DocsLayout>)

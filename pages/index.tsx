@@ -8,7 +8,7 @@ import { HomeLayout } from '@/components/home-layout'
 
 const TaskGrid = styled.div`
     display: grid;
-    grid-gap: ${props => props.theme.spacing[3]}px;
+    grid-gap: ${(props) => props.theme.spacing[3]}px;
     grid-template-columns: repeat(1, 1fr);
 
     ${media.s`
@@ -18,27 +18,27 @@ const TaskGrid = styled.div`
 
 const CardBase = styled.article`
     display: flex;
-    padding: ${props => props.theme.spacing[2]}px;
-    border-radius: ${props => props.theme.borderRadius.default}px;
+    padding: ${(props) => props.theme.spacing[2]}px;
+    border-radius: ${(props) => props.theme.borderRadius.default}px;
 `
 
 const WidgetCard = styled(CardBase)`
-    box-shadow: ${props => props.theme.shadow};
+    box-shadow: ${(props) => props.theme.shadow};
 `
 
 const MessageCard = styled(CardBase)`
     flex-direction: column;
     background-image: url('/images/hexagon-pattern.png');
-    background-color: ${props => props.theme.colors.primary};
+    background-color: ${(props) => props.theme.colors.primary};
 `
 
 const Icon = styled(Calculator)`
-    margin-left: ${props => props.theme.spacing[1]}px;
-    color: ${props => props.theme.colors.primary};
+    margin-left: ${(props) => props.theme.spacing[1]}px;
+    color: ${(props) => props.theme.colors.primary};
 `
 
 const StyledLink = styled.a`
-    color: ${props => props.theme.colors.accent};
+    color: ${(props) => props.theme.colors.accent};
 `
 
 export default function Home() {

@@ -9,13 +9,13 @@ import { Head } from '@/components/head'
 const Main = styled.main`
     min-height: 100vh;
     padding-top: 40px;
-    padding-right: ${props => props.theme.spacing[2]}px;
+    padding-right: ${(props) => props.theme.spacing[2]}px;
     padding-bottom: 40px;
-    padding-left: ${props => props.theme.spacing[2]}px;
+    padding-left: ${(props) => props.theme.spacing[2]}px;
 `
 
 const DocH2 = styled(Heading)`
-    margin-top: ${props => props.theme.spacing[3]}px;
+    margin-top: ${(props) => props.theme.spacing[3]}px;
 
     h1 + & {
         margin-top: 0;
@@ -23,7 +23,7 @@ const DocH2 = styled(Heading)`
 `
 
 const DocH3 = styled(Heading)`
-    margin-top: ${props => props.theme.spacing[3]}px;
+    margin-top: ${(props) => props.theme.spacing[3]}px;
 
     h2 + & {
         margin-top: 0;
@@ -31,7 +31,7 @@ const DocH3 = styled(Heading)`
 `
 
 const DocH4 = styled(Heading)`
-    margin-top: ${props => props.theme.spacing[2]}px;
+    margin-top: ${(props) => props.theme.spacing[2]}px;
 `
 
 export function DocsLayout(props): JSX.Element {
@@ -41,9 +41,9 @@ export function DocsLayout(props): JSX.Element {
         <MDXProvider
             components={{
                 ...markdownComponents,
-                h2: props => <DocH2 {...props} size={2} />,
-                h3: props => <DocH3 {...props} size={3} />,
-                h4: props => <DocH4 {...props} size={4} />,
+                h2: (props) => <DocH2 {...props} size={2} />,
+                h3: (props) => <DocH3 {...props} size={3} />,
+                h4: (props) => <DocH4 {...props} size={4} />,
             }}
         >
             <Head

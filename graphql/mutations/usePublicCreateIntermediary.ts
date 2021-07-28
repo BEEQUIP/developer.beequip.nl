@@ -6,14 +6,12 @@ import {
 import gql from 'graphql-tag'
 
 const mutation = gql`
-    mutation PublicCreateIntermediary(
-        $input: PublicCreateIntermediaryInput
-    ) {
+    mutation PublicCreateIntermediary($input: PublicCreateIntermediaryInput) {
         publicCreateIntermediary(input: $input) {
             intermediary {
                 cocNumber
                 createdAt
-                id  
+                id
                 name
                 token
                 updatedAt

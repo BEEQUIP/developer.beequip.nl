@@ -8,9 +8,9 @@ const Nav = styled.nav`
     top: 0;
     z-index: 1;
     display: flex;
-    padding: ${props => props.theme.spacing[1]}px;
-    background-color: ${props => props.theme.colors.black};
-    color: ${props => props.theme.colors.white};
+    padding: ${(props) => props.theme.spacing[1]}px;
+    background-color: ${(props) => props.theme.colors.black};
+    color: ${(props) => props.theme.colors.white};
 `
 
 const LogoContainer = styled.span`
@@ -20,12 +20,12 @@ const LogoContainer = styled.span`
 
 const Beequip = styled.span`
     margin-right: 4px;
-    margin-left: ${props => props.theme.spacing[1]}px;
+    margin-left: ${(props) => props.theme.spacing[1]}px;
     font-weight: bold;
 `
 
 const StyledLink = styled.a`
-    color: ${props => props.theme.colors.white};
+    color: ${(props) => props.theme.colors.white};
     text-decoration: none;
 `
 

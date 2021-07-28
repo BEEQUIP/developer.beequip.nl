@@ -10,7 +10,9 @@
         "graphql:all": "yarn run graphql:download-schema && yarn run graphql:clean-generated-types && yarn run graphql:generate-types",
         "graphql:download-schema": "apollo service:download --config=apollo.config.js graphql.schema.json",
         "graphql:generate-types": "apollo client:codegen --target typescript --tagName gql --addTypename --outputFlat types/graphql",
-        "graphql:clean-generated-types": "del './types/graphql/*'"
+        "graphql:clean-generated-types": "del './types/graphql/*'",
+        "lint:check": "eslint --ext .js --ext .ts --ext .tsx .",
+        "lint:fix": "yarn run lint:check --fix"
     },
     "repository": {
         "type": "git",
@@ -53,6 +55,7 @@
         "babel-plugin-styled-components": "^1.13.2",
         "del-cli": "^3.0.0",
         "eslint": "^7.31.0",
+        "prettier": "^2.3.2",
         "typescript": "^4.3.5"
     },
     "resolutions": {

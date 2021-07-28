@@ -57,7 +57,7 @@ export function CreateIntermediaryForm(props: Props): JSX.Element {
             validateOnBlur={true}
             enableReinitialize={false}
         >
-            {props => (
+            {(props) => (
                 <Box bottom={3}>
                     <Form onSubmit={props.handleSubmit}>
                         <Field

@@ -18,7 +18,7 @@ const PatternContainer = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 4rem ${props => props.theme.spacing[2]}px;
+    padding: 4rem ${(props) => props.theme.spacing[2]}px;
     background-image: url('/images/hexagon-pattern.png');
     animation: 45s ${animation} infinite alternate;
 
@@ -27,7 +27,6 @@ const PatternContainer = styled.section`
         padding-bottom: 8rem;
     `};
 `
-
 
 export function Jumbotron(props): JSX.Element {
     return (

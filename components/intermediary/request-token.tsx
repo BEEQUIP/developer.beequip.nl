@@ -5,9 +5,8 @@ import { CreateIntermediaryForm } from './create-intermediary-form'
 import { TokenResult } from './token-result'
 
 export function RequestToken(): JSX.Element {
-    const [intermediaryData, setIntermediaryData] = React.useState<
-        Intermediary
-    >()
+    const [intermediaryData, setIntermediaryData] =
+        React.useState<Intermediary>()
     const onReceiveData = (intermediary: Intermediary) => {
         setIntermediaryData(intermediary)
     }

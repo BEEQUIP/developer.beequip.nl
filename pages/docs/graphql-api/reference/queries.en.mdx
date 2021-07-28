@@ -1,0 +1,34 @@
+---
+title: Queries
+description: Queries in our GraphQL API
+---
+
+# Queries
+
+### categoryGroups
+
+Use the query `categoryGroups` to retrieve our available categories. A category is required to request a lease.
+
+### leaseBoundaries
+
+Use the query `leaseBoundaries` to fetch the boundaries of a possible calculation for the given machine. You can 
+perform it as the first query to check whether the object can be leased. You can use the returned values if the 
+machine falls within the accepted boundaries. You’ll receive a set of min/max values for downpayment, balloon payment, 
+purchase price, and tenor. You can use these for example in your form’s labels to show to the user.
+
+### organizationSearch 
+
+To perform a calculation, the Chamber of Commerce (“KVK”) number is required. You can ask your end user for that 
+number, or use the query organizationSearch to build an autocomplete to find the Chamber Of Commerce 
+using the company’s name. 
+
+### leaseCalculation 
+
+Use the query `leaseCalculation` to retrieve a lease price calculation for the given machine. This query will 
+return a deal object and a lease object. You will need both to call `updateLease` and `requestDeal`. 
+
+### leaseSuggestions 
+
+Instead of calculating manually, use the query `leaseSuggestions` to retrieve 1 or more ready-to-go pricing 
+plans for the given machine. For example, this query can give a suggestion for a calculation that results in the 
+lowest possible monthly payment. 

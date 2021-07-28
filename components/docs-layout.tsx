@@ -1,61 +1,54 @@
 import styled from 'styled-components'
-import { MDXProvider } from '@mdx-js/react'
-import { Heading } from '@beequip/hexagon'
 import { Container } from './container'
 import { Navbar } from './navbar'
-import { markdownComponents } from '@/lib/mdx-components'
-import { Head } from '@/components/head'
+import { Head } from './head'
+import { MetaOptions, Page } from '@/types/pages'
+import { SideNavigation } from './side-navigation'
+
+const Wrapper = styled.div`
+    display: grid;
+    grid-template-rows: 60px 1fr;
+    min-height: 100vh;
+`
 
 const Main = styled.main`
-    min-height: 100vh;
-    padding-top: 40px;
-    padding-right: ${(props) => props.theme.spacing[2]}px;
-    padding-bottom: 40px;
-    padding-left: ${(props) => props.theme.spacing[2]}px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    column-gap: ${(props) => props.theme.spacing[3]}px;
 `
 
-const DocH2 = styled(Heading)`
-    margin-top: ${(props) => props.theme.spacing[3]}px;
-
-    h1 + & {
-        margin-top: 0;
-    }
+const Content = styled.div`
+    display: flex;
+    justify-content: center;
+    padding: ${(props) => props.theme.spacing[2]}px;
 `
 
-const DocH3 = styled(Heading)`
-    margin-top: ${(props) => props.theme.spacing[3]}px;
+interface Props {
+    directories: Page[]
+    meta: MetaOptions
+    children: React.ReactNode
+}
 
-    h2 + & {
-        margin-top: 0;
-    }
-`
-
-const DocH4 = styled(Heading)`
-    margin-top: ${(props) => props.theme.spacing[2]}px;
-`
-
-export function DocsLayout(props): JSX.Element {
-    const { meta } = props
+export function DocsLayout(props: Props): JSX.Element {
+    const { meta, directories, children } = props
 
     return (
-        <MDXProvider
-            components={{
-                ...markdownComponents,
-                h2: (props) => <DocH2 {...props} size={2} />,
-                h3: (props) => <DocH3 {...props} size={3} />,
-                h4: (props) => <DocH4 {...props} size={4} />,
-            }}
-        >
+        <>
             <Head
                 title={meta.title}
                 description={meta.description}
                 titlePrefix=""
                 titleSuffix=" – Beequip Developer"
             />
-            <Navbar />
-            <Main>
-                <Container maxWidth={1024}>{props.children}</Container>
-            </Main>
-        </MDXProvider>
+            <Wrapper>
+                <Navbar />
+                <Main>
+                    <SideNavigation directories={directories} />
+                    <Content>
+                        <Container>{children}</Container>
+                    </Content>
+                </Main>
+            </Wrapper>
+        </>
     )
 }

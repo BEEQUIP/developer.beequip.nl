@@ -3,7 +3,7 @@ import { Formik, FormikHelpers } from 'formik'
 import * as yup from 'yup'
 import { Box, Button, Field, Form, Input } from '@beequip/hexagon'
 import { usePublicCreateIntermediary } from '@/graphql/mutations/usePublicCreateIntermediary'
-import { getGraphQLError } from '@/lib/graphqlError'
+import { getGraphQLError } from '@/utility/graphqlError'
 
 const validationSchema = yup.object().shape({
     name: yup.string().required('Please enter your company name'),

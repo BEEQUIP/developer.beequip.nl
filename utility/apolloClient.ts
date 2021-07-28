@@ -71,4 +71,3 @@ export function useApollo(pageProps) {
     const store = useMemo(() => initializeApollo(state), [state])
     return store
 }
-

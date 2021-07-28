@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 import { Calculator } from 'styled-icons/fa-solid/Calculator/Calculator'
+import { NetworkWired } from 'styled-icons/fa-solid/NetworkWired/NetworkWired'
 import { Box, Heading, Text, media } from '@beequip/hexagon'
 import { Container } from '@/components/container'
 import { Jumbotron } from '@/components/jumbotron'
@@ -22,7 +23,7 @@ const CardBase = styled.article`
     border-radius: ${(props) => props.theme.borderRadius.default}px;
 `
 
-const WidgetCard = styled(CardBase)`
+const ProductCard = styled(CardBase)`
     box-shadow: ${(props) => props.theme.shadow};
 `
 
@@ -32,16 +33,25 @@ const MessageCard = styled(CardBase)`
     background-color: ${(props) => props.theme.colors.primary};
 `
 
-const Icon = styled(Calculator)`
+const CalculatorIcon = styled(Calculator)`
     margin-left: ${(props) => props.theme.spacing[1]}px;
     color: ${(props) => props.theme.colors.primary};
 `
 
-const StyledLink = styled.a`
+const ApiIcon = styled(NetworkWired)`
+    margin-left: ${(props) => props.theme.spacing[1]}px;
+    color: ${(props) => props.theme.colors.primary};
+`
+
+const ProductLink = styled.a`
     color: ${(props) => props.theme.colors.accent};
 `
 
-export default function Home() {
+const MessageLink = styled.a`
+    color: ${(props) => props.theme.colors.white};
+`
+
+export default function Home(): JSX.Element {
     return (
         <HomeLayout
             meta={{
@@ -63,13 +73,16 @@ export default function Home() {
                     <Heading size={2}>Getting started</Heading>
                     <Heading size={3}>What do you want to do?</Heading>
                     <TaskGrid>
-                        <WidgetCard>
+                        <ProductCard>
                             <div>
                                 <Heading size={4}>
-                                    <Link href="/widgets/calculator" passHref>
-                                        <StyledLink>
+                                    <Link
+                                        href="/docs/widgets/calculator"
+                                        passHref
+                                    >
+                                        <ProductLink>
                                             Embed our lease calculator
-                                        </StyledLink>
+                                        </ProductLink>
                                     </Link>
                                 </Heading>
                                 <Text>
@@ -77,13 +90,30 @@ export default function Home() {
                                     prices for your equipment.
                                 </Text>
                             </div>
-                            <Icon size={48} />
-                        </WidgetCard>
+                            <CalculatorIcon size={48} />
+                        </ProductCard>
+                        <ProductCard>
+                            <div>
+                                <Heading size={4}>
+                                    <Link href="/docs/graphql-api" passHref>
+                                        <ProductLink>Use our API</ProductLink>
+                                    </Link>
+                                </Heading>
+                                <Text>
+                                    Create your own custom lease calculator.
+                                </Text>
+                            </div>
+                            <ApiIcon size={48} />
+                        </ProductCard>
                         <MessageCard>
                             <Heading size={4}>Other integrations</Heading>
                             <Text>
-                                We’re currently working on extending this portal
-                                and building more ways to connect to Beequip.
+                                If you want to integrate in any other way, give
+                                us a call at{' '}
+                                <MessageLink href="tel:0103400844">
+                                    010 - 340 0844
+                                </MessageLink>
+                                .
                             </Text>
                         </MessageCard>
                     </TaskGrid>

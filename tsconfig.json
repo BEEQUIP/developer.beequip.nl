@@ -16,9 +16,10 @@
         "baseUrl": "./",
         "paths": {
             "@/components/*": ["components/*"],
-            "@/lib/*": ["lib/*"],
             "@/graphql/*": ["graphql/*"],
-            "@/types/*": ["types/*"]
+            "@/hooks/*": ["hooks/*"],
+            "@/types/*": ["types/*"],
+            "@/utility/*": ["utility/*"]
         }
     },
     "exclude": ["node_modules"],

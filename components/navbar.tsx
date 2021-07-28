@@ -1,14 +1,14 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 import { FullLogo } from '@/components/logos/full'
-import { Container } from '@/components/container'
 
 const Nav = styled.nav`
     position: sticky;
     top: 0;
     z-index: 1;
     display: flex;
-    padding: ${(props) => props.theme.spacing[1]}px;
+    align-items: center;
+    padding: ${(props) => props.theme.spacing[2]}px;
     background-color: ${(props) => props.theme.colors.black};
     color: ${(props) => props.theme.colors.white};
 `
@@ -24,6 +24,10 @@ const Beequip = styled.span`
     font-weight: bold;
 `
 
+const Suffix = styled.span`
+    color: ${(props) => props.theme.colors.orange};
+`
+
 const StyledLink = styled.a`
     color: ${(props) => props.theme.colors.white};
     text-decoration: none;
@@ -32,16 +36,14 @@ const StyledLink = styled.a`
 export function Navbar(): JSX.Element {
     return (
         <Nav>
-            <Container>
-                <Link href="/" passHref>
-                    <StyledLink>
-                        <LogoContainer>
-                            <FullLogo width={24} height={33} />
-                            <Beequip>BEEQUIP</Beequip> Developer
-                        </LogoContainer>
-                    </StyledLink>
-                </Link>
-            </Container>
+            <Link href="/" passHref>
+                <StyledLink>
+                    <LogoContainer>
+                        <FullLogo width={24} height={33} />
+                        <Beequip>BEEQUIP</Beequip> <Suffix>Developer</Suffix>
+                    </LogoContainer>
+                </StyledLink>
+            </Link>
         </Nav>
     )
 }

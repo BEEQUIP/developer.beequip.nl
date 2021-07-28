@@ -1,0 +1,28 @@
+---
+title: About GraphQL
+description: Learn about GraphQL
+---
+
+# About GraphQL
+
+## Schema
+
+GraphQL uses a typed schema. You can preview the schema using so-called schema introspection, which means you can 
+query the schema for information about itself.  
+
+Introspection is enabled on our API, and most GraphQL developer tools make introspection very easy, so you can discover 
+the API possibilities using these tools. (We use GraphQL Playground.) 
+
+## Example request 
+
+GraphQL in its essence is JSON over HTTP using POST requests.  
+For example, this request retrieves all names of our category groups and returns it as JSON: 
+
+```bash
+curl -H "Authorization: Token sYymN5aL5WvidYaLLTMJwaix" -X POST -d " \ { \  
+    \"query\": \"query { categoryGroups { name } }\" \ } \" https://api.beequip.nl/graphql 
+```
+
+## Resources
+
+- [GraphQL.org](https://graphql.org/learn/)

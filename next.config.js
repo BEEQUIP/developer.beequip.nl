@@ -24,4 +24,7 @@ module.exports = withMDX({
 
         return config
     },
+    eslint: {
+        ignoreDuringBuilds: true,
+    },
 })

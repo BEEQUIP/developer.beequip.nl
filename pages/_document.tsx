@@ -1,8 +1,5 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Document from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
-import { Global } from '@/lib/style/global'
-import { Normalize } from '@/lib/style/normalize'
-import { Webfonts } from '@/lib/style/webfonts'
 
 export default class PortalDocument extends Document {
     static async getInitialProps(ctx) {
@@ -29,23 +26,5 @@ export default class PortalDocument extends Document {
         } finally {
             sheet.seal()
         }
-    }
-
-    render() {
-        return (
-            <Html>
-                <Head>
-                    <style dangerouslySetInnerHTML={{ __html: Global }} />
-                    <style dangerouslySetInnerHTML={{ __html: Normalize }} />
-                    <style
-                        dangerouslySetInnerHTML={{ __html: Webfonts }}
-                    />
-                </Head>
-                <body>
-                    <Main />
-                    <NextScript />
-                </body>
-            </Html>
-        )
     }
 }

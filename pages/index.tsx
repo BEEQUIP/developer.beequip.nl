@@ -79,7 +79,7 @@ export default function Home() {
                             </div>
                             <Icon size={48} />
                         </WidgetCard>
-                        <MessageCard background="grey">
+                        <MessageCard>
                             <Heading size={4}>Other integrations</Heading>
                             <Text>
                                 We’re currently working on extending this portal

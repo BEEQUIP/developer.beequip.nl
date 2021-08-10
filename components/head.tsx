@@ -7,7 +7,7 @@ interface Props {
     description?: string
 }
 
-export const Head = (props: Props) => {
+export function Head(props: Props): JSX.Element {
     const titlePrefix =
         null != props.titlePrefix ? props.titlePrefix : 'Beequip – '
     const titleSuffix = null != props.titleSuffix ? props.titleSuffix : ''

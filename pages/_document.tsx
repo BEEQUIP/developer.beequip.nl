@@ -1,18 +1,17 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Document, { DocumentContext, DocumentInitialProps } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
-import { Global } from '@beequip/dev-lib/style/global'
-import { Normalize } from '@beequip/dev-lib/style/normalize'
-import { Webfonts } from '@beequip/dev-lib/style/webfonts'
 
 export default class PortalDocument extends Document {
-    static async getInitialProps(ctx) {
+    static async getInitialProps(
+        ctx: DocumentContext
+    ): Promise<DocumentInitialProps> {
         const sheet = new ServerStyleSheet()
         const originalRenderPage = ctx.renderPage
 
         try {
             ctx.renderPage = () =>
                 originalRenderPage({
-                    enhanceApp: App => props =>
+                    enhanceApp: (App) => (props) =>
                         sheet.collectStyles(<App {...props} />),
                 })
 
@@ -29,23 +28,5 @@ export default class PortalDocument extends Document {
         } finally {
             sheet.seal()
         }
-    }
-
-    render() {
-        return (
-            <Html>
-                <Head>
-                    <style dangerouslySetInnerHTML={{ __html: Global }} />
-                    <style dangerouslySetInnerHTML={{ __html: Normalize }} />
-                    <style
-                        dangerouslySetInnerHTML={{ __html: Webfonts }}
-                    />
-                </Head>
-                <body>
-                    <Main />
-                    <NextScript />
-                </body>
-            </Html>
-        )
     }
 }

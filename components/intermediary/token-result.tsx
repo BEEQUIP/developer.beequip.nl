@@ -1,12 +1,12 @@
 import React from 'react'
 import { Card, Heading, Body, Cell, Row, Table } from '@beequip/hexagon'
-import { PublicCreateIntermediary_publicCreateIntermediary_intermediary as Intermediary } from '@beequip/dev-types/graphql/PublicCreateIntermediary'
+import { PublicCreateIntermediary_publicCreateIntermediary_intermediary as Intermediary } from '@/types/graphql/PublicCreateIntermediary'
 
 interface Props {
     intermediary: Intermediary
 }
 
-export const TokenResult = ({ intermediary }: Props) => {
+export function TokenResult({ intermediary }: Props): JSX.Element {
     return (
         <Card>
             <Heading size={4}>Your data</Heading>

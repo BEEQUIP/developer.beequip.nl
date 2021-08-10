@@ -1,13 +1,11 @@
-import { MDXProvider } from '@mdx-js/react'
 import { Navbar } from './navbar'
-import { markdownComponents } from '@beequip/dev-lib/mdx-components'
-import { Head } from '@beequip/dev-components/layout/head'
+import { Head } from '@/components/head'
 
-export const Introduction = props => {
+export function HomeLayout(props): JSX.Element {
     const { meta } = props
 
     return (
-        <MDXProvider components={{ ...markdownComponents }}>
+        <>
             <Head
                 title={meta.title}
                 description={meta.description}
@@ -16,6 +14,6 @@ export const Introduction = props => {
             />
             <Navbar />
             {props.children}
-        </MDXProvider>
+        </>
     )
 }

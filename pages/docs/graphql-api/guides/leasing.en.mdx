@@ -1,0 +1,45 @@
+---
+title: Guide to leasing
+description: A guide to help understand leasing
+---
+
+# Core concepts
+
+### Organization
+
+The company that wants to lease equipment at Beequip. 
+
+### Lease 
+
+A container for a lease for a single piece of equipment. It includes contract details (tenor, downPayment et cetera) and equipment details (brand, year of build et cetera). 
+ 
+### Deal 
+
+A container for a request to lease at Beequip. It contains client information, and one or more leases. 
+
+### Object 
+
+The machine / equipment to be leased. 
+
+### Boundaries
+
+The minimum and maximum value for a given field. For example, the purchasePrice must be at least € 15.000,- (excluding VAT). 
+
+## Flow of a lease request
+
+A common use case is calculating the lease price of a machine on your website. Let’s say you want a calculator where the 
+visitor doesn’t have to calculate manually. The requests to accomplish this are: 
+
+- Call the `leaseBoundaries` query to determine whether the machine can be leased, and hide the calculator accordingly. 
+- Call the `leaseSuggestions` query to retrieve 1 or more suggested pricing plans and show them to the user. 
+- Let the user select a suggested plan, and call the `updateLease` mutation to apply the suggestion to the lease. 
+- Let the user enter their contact details, and call the `requestDeal` mutation. 
+- You’re done, Beequip has received the deal and will start processing it. 
+
+Two queries are optional: 
+
+- The query `organizationSearch` can be used to match up company names to their corresponding Chamber Of Commerce number. 
+We require the latter, but most business owners don’t remember their CoC number, so you can make it easier for them and use 
+organizationSearch to provide an autocomplete input field where they can type their company name. 
+- The query `categoryGroups` can be used to retrieve names and ID’s of our categories and sub-categories. We require an 
+object to have one of our categoryID’s, so you can use this query to map your own categories to ours. 

@@ -2,8 +2,8 @@ import React from 'react'
 import { Formik, FormikHelpers } from 'formik'
 import * as yup from 'yup'
 import { Box, Button, Field, Form, Input } from '@beequip/hexagon'
-import { usePublicCreateIntermediary } from '@beequip/dev-graphql/mutations/usePublicCreateIntermediary'
-import { getGraphQLError } from '@beequip/dev-lib/graphqlError'
+import { usePublicCreateIntermediary } from '@/graphql/mutations/usePublicCreateIntermediary'
+import { getGraphQLError } from '@/utility/graphqlError'
 
 const validationSchema = yup.object().shape({
     name: yup.string().required('Please enter your company name'),
@@ -19,7 +19,7 @@ interface Props {
     onData: any
 }
 
-export const CreateIntermediaryForm = (props: Props) => {
+export function CreateIntermediaryForm(props: Props): JSX.Element {
     const initialValues: FormValues = {
         name: '',
         cocNumber: '',
@@ -57,7 +57,7 @@ export const CreateIntermediaryForm = (props: Props) => {
             validateOnBlur={true}
             enableReinitialize={false}
         >
-            {props => (
+            {(props) => (
                 <Box bottom={3}>
                     <Form onSubmit={props.handleSubmit}>
                         <Field

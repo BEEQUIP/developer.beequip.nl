@@ -1,15 +1,14 @@
-import { Docs } from '@beequip/dev-components/layout/_docs'
-import { RequestToken } from '@beequip/dev-components/intermediary/RequestToken'
-import { withApollo } from '@beequip/dev-lib/withApollo'
+---
+title: Embed our calculator widget
+description: Get started with adding our calculator widget to your website
+---
 
-export const meta = {
-    title: 'Embed our calculator widget',
-    description: 'Get started with adding our calculator widget to your website.',
-}
+import { Text } from '@beequip/hexagon'
+import { RequestToken } from '@/components/intermediary/request-token'
 
 # Calculator widget
 
-## Embed Beequip lease calculations into your site.   
+<Text size="l" bottomMargin={4}>Embed Beequip lease calculations into your site</Text>
 
 The calculator widget works best when placed on pages that showcase a single piece
 of equipment so its data can be used in the calculations. The widget has several 
@@ -17,24 +16,23 @@ configuration parameters, which you can read about below.
 
 ## Getting started
 
-1. Add a piece of HTML to your web page with class `beequip-calculator`, in a location where you want 
-the calculator widget to render.
+Add a piece of HTML to your web page with class `beequip-calculator`, in a location where you want the calculator widget to render.
 
-```
+```html
 <a href="https://lease.beequip.nl" class="beequip-calculator">Lease equipment bij Beequip</a>
 ```
 
-2. Add the [required parameters](#required-parameters) with data-attributes, as described below.
+Next, Add the [required parameters](#required-parameters) with data-attributes, as described below.
 
-```
+```html
 <a href="https://lease.beequip.nl" class="beequip-calculator" data-brand="Caterpillar">
     Lease equipment bij Beequip
 </a>
 ```
 
-3. Add a reference to a script hosted by Beequip. This script will render the widget.
+Finally, add a reference to a script hosted by Beequip. This script will render the widget.
 
-```
+```html
 <a href="https://lease.beequip.nl" class="beequip-calculator" data-category-id="13" data-brand="Caterpillar">
     Lease equipment bij Beequip
 </a>
@@ -58,7 +56,7 @@ These parameters must be supplied via `data-` attributes, otherwise the widget w
 
 We use a unique token as an identifier for your organisation. 
 
-```
+```html
 <a data-token="Xhpx7QT6xRF9ZHyABrxmm12Q">
 ```
 
@@ -77,7 +75,7 @@ If you don't have a Beeport account, you can request a token with this form:
 
 The brand/manufacturer of the equipment.
 
-```
+```html
 <a data-brand="Caterpillar">
 ```
 
@@ -85,7 +83,7 @@ The brand/manufacturer of the equipment.
 
 The model of the equipment.
 
-```
+```html
 <a data-model="AS 450">
 ```
 
@@ -93,7 +91,7 @@ The model of the equipment.
 
 The year the equipment was built.
 
-```
+```html
 <a data-year="2017">
 ```
 
@@ -105,7 +103,7 @@ It is a required parameter so the widget can check whether the object is eligibl
 
 ⚠ The equipment should cost at least € 15.000. We don’t accept deals with a lower purchase price.
 
-```
+```html
 <a data-purchase-price="15000">
 ```
 
@@ -121,7 +119,7 @@ With the category ID you can supply the asset category the equipment belongs to.
 the [category table](#available-categories).   
 If you do not supply the category ID, a dropdown will be rendered where the user must choose a category.
 
-```
+```html
 <a data-category-id="3">
 ```
 
@@ -130,7 +128,7 @@ If you do not supply the category ID, a dropdown will be rendered where the user
 Indicates the condition the equipment is in. `true` if it is used, `false` if it is new.   
 Defaults to `true`.
 
-```
+```html
 <a data-object-used="false">
 ```
 
@@ -138,7 +136,7 @@ Defaults to `true`.
 
 The width of the rendered widget, in pixels or a percentage. Defaults to 300 pixels.
 
-```
+```html
 <a data-width="400">
 ```
 
@@ -146,7 +144,7 @@ The width of the rendered widget, in pixels or a percentage. Defaults to 300 pix
 
 The height of the rendered widget, in pixels or a percentage. Defaults to 300 pixels.
 
-```
+```html
 <a data-width="600">
 ```
 
@@ -169,7 +167,7 @@ Customize the color scheme of the widget. Possible values are:
 
 Defaults to `light`.
 
-```
+```html
 <a data-theme="dark">
 ```
 
@@ -178,7 +176,7 @@ Defaults to `light`.
 This will set the text color of the body copy to the given value. The value
 can be any valid CSS color.
 
-```
+```html
 <a data-color="#333">
 ```
 
@@ -187,7 +185,7 @@ can be any valid CSS color.
 This will set the background color of the entire widget to the given value. The value
 can be any valid CSS color.
 
-```
+```html
 <a data-background-color="rgb(255, 161, 0)">
 ```
 
@@ -196,7 +194,7 @@ can be any valid CSS color.
 This will set the text color of the primary button to the given value. The value
 can be any valid CSS color.
 
-```
+```html
 <a data-primary-button-color="#056fff">
 ```
 
@@ -205,7 +203,7 @@ can be any valid CSS color.
 This will set the background color of the primary button to the given value. The value
 can be any valid CSS color.
 
-```
+```html
 <a data-primary-button-background-color="rgb(0, 0, 0)">
 ```
 
@@ -214,7 +212,7 @@ can be any valid CSS color.
 This will set the text color of the secondary button to the given value. The value
 can be any valid CSS color.
 
-```
+```html
 <a data-secondary-button-color="#056fff">
 ```
 
@@ -223,7 +221,7 @@ can be any valid CSS color.
 This will set the background color of the secondary button to the given value. The value
 can be any valid CSS color.
 
-```
+```html
 <a data-secondary-button-background-color="rgb(0, 0, 0)">
 ```
 
@@ -232,13 +230,15 @@ can be any valid CSS color.
 Indicates whether the logo of Beequip will be shown in calculator widget.
 Defaults to `true`.
 
-```
+```html
 <a data-show-logo="false">
 ```
 
 ---
 
 ### Available categories
+
+These are the available options for the `category-id` parameter.
 
 ID | Description in Dutch | Description in English
 -- | -------------------- | ----------------------
@@ -259,7 +259,7 @@ ID | Description in Dutch | Description in English
 
 ### Example widget with a few attributes
 
-```
+```html
 <a href="https://www.beequip.nl" class="beequip-calculator" 
    data-brand="Caterpillar" 
    data-model="AS 450" 
@@ -291,5 +291,3 @@ Common causes of problems are:
   will not work, and should be changed to `data-purchase-price="15000"`.
 - One of the theming parameters has an incorrect value. The widget tries to build a working theme from the supplied parameters, and it
   will fail if a theming parameter is not a valid CSS color.
-
-export default withApollo()(({ children }) => <Docs meta={meta}>{children}</Docs>)

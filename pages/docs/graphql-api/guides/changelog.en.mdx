@@ -1,0 +1,39 @@
+---
+title: GraphQL API Changelog
+description: Changes to Beequip’s GraphQL API
+---
+
+# Changelog
+
+Past and upcoming changes to our GraphQL API.
+
+Breaking changes are changes that will break behaviour of connecting clients. They will be anounced 6 months prior
+to their release to give clients ample time to make the required changes.
+
+## Upcoming breaking changes
+
+Currently planned: none.
+
+## Past changes
+
+### 7 May 2021
+
+- Type `UnexpectedError` was added.
+
+### 4 February 2021
+
+- Field `balloonPayment` was added to type `LeaseBoundariesInput`.
+- Field `tenor` was added to type `LeaseBoundariesInput`.
+- Field `downPayment` was added to type `LeaseBoundariesInput`.
+
+### 1 February 2021
+
+- Field `updateLease` was added to type `Mutation`.
+- Type `UpdateLeaseInput` was added.
+- Type `UpdateLeaseDealInput` was added.
+- Type `UpdateLeasePayload` was added.
+- Type `UpdateLeaseSuccess` was added.
+- Type `InvalidLeaseIdentifierError` was added.
+- Type `LeaseSuggestionsFailedError` was added.
+- Type `InvalidLeaseIdentifierError` was added.
+- Type `CategoryNotFoundError` was added.

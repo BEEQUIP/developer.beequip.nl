@@ -1,5 +1,6 @@
 import { Navbar } from './navbar'
 import { Head } from '@/components/head'
+import { Footer } from '@/components/footer'
 
 export function HomeLayout(props): JSX.Element {
     const { meta } = props
@@ -14,6 +15,7 @@ export function HomeLayout(props): JSX.Element {
             />
             <Navbar />
             {props.children}
+            <Footer renderFor="home" />
         </>
     )
 }

@@ -51,6 +51,15 @@ export function usePages(): { directories: Page[] } {
                                     asPath ===
                                     '/docs/graphql-api/getting-started/limitations',
                             },
+                            {
+                                name: 'terms-and-conditions',
+                                navigationTitle: 'Terms and conditions',
+                                route: '/docs/graphql-api/getting-started/terms-and-conditions',
+                                isDirectory: false,
+                                isActive:
+                                    asPath ===
+                                    '/docs/graphql-api/getting-started/terms-and-conditions',
+                            },
                         ],
                     },
                     {

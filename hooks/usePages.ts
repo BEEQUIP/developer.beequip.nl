@@ -87,6 +87,15 @@ export function usePages(): { directories: Page[] } {
                                     asPath ===
                                     '/docs/graphql-api/guides/leasing',
                             },
+                            {
+                                name: 'changelog',
+                                navigationTitle: 'Changelog',
+                                route: '/docs/graphql-api/guides/changelog',
+                                isDirectory: false,
+                                isActive:
+                                    asPath ===
+                                    '/docs/graphql-api/guides/changelog',
+                            },
                         ],
                     },
                     {
@@ -133,6 +142,13 @@ export function usePages(): { directories: Page[] } {
                         route: '/docs/widgets/calculator',
                         isDirectory: false,
                         isActive: asPath === '/docs/widgets/calculator',
+                    },
+                    {
+                        name: 'changelog',
+                        navigationTitle: 'Changelog',
+                        route: '/docs/widgets/changelog',
+                        isDirectory: false,
+                        isActive: asPath === '/docs/widgets/changelog',
                     },
                 ],
             },

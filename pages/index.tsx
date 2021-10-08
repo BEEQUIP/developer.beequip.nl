@@ -51,6 +51,10 @@ const MessageLink = styled.a`
     color: ${(props) => props.theme.colors.white};
 `
 
+const HugeBox = styled(Box)`
+    margin-bottom: 100px;
+`
+
 export default function Home(): JSX.Element {
     return (
         <HomeLayout
@@ -68,7 +72,7 @@ export default function Home(): JSX.Element {
                     Explore how to integrate your software with ours.
                 </Heading>
             </Jumbotron>
-            <Box top={3} right={2} left={2}>
+            <HugeBox bottom={5} top={3} right={2} left={2}>
                 <Container>
                     <Heading size={2}>Getting started</Heading>
                     <Heading size={3}>What do you want to do?</Heading>
@@ -118,7 +122,7 @@ export default function Home(): JSX.Element {
                         </MessageCard>
                     </TaskGrid>
                 </Container>
-            </Box>
+            </HugeBox>
         </HomeLayout>
     )
 }

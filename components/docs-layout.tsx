@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { Container } from './container'
 import { Navbar } from './navbar'
 import { Head } from './head'
+import { Footer } from './footer'
 import { MetaOptions, Page } from '@/types/pages'
 import { SideNavigation } from './side-navigation'
 
@@ -48,6 +49,7 @@ export function DocsLayout(props: Props): JSX.Element {
                         <Container>{children}</Container>
                     </Content>
                 </Main>
+                <Footer renderFor="docs" />
             </Wrapper>
         </>
     )

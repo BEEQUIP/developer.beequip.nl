@@ -29,7 +29,12 @@ module.exports = withNextra({
         return [
             {
                 source: '/widgets/calculator',
-                destination: '/docs/widgets/calculator',
+                destination: '/docs/widgets/variants/calculator',
+                permanent: true,
+            },
+            {
+                source: '/docs/widgets/calculator',
+                destination: '/docs/widgets/variants/calculator',
                 permanent: true,
             },
         ]

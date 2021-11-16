@@ -137,11 +137,30 @@ export function usePages(): { directories: Page[] } {
                 isActive: asPath.startsWith('/docs/widgets'),
                 children: [
                     {
-                        name: 'calculator',
-                        navigationTitle: 'Calculator',
-                        route: '/docs/widgets/calculator',
-                        isDirectory: false,
-                        isActive: asPath === '/docs/widgets/calculator',
+                        name: 'widgets-variants',
+                        navigationTitle: 'Variants',
+                        route: '/docs/widgets/variants',
+                        isDirectory: true,
+                        isActive: asPath.startsWith('/docs/widgets/variants'),
+                        children: [
+                            {
+                                name: 'button',
+                                navigationTitle: 'Button',
+                                route: '/docs/widgets/variants/button',
+                                isDirectory: false,
+                                isActive:
+                                    asPath === '/docs/widgets/variants/button',
+                            },
+                            {
+                                name: 'calculator',
+                                navigationTitle: 'Calculator',
+                                route: '/docs/widgets/variants/calculator',
+                                isDirectory: false,
+                                isActive:
+                                    asPath ===
+                                    '/docs/widgets/variants/calculator',
+                            },
+                        ],
                     },
                     {
                         name: 'changelog',

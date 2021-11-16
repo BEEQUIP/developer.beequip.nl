@@ -12,12 +12,16 @@ import {
     Row,
     Cell,
     Link as HexagonLink,
+    theme,
 } from '@beequip/hexagon'
 
 const codeTheme = {
     plain: {
-        color: '#000',
-        backgroundColor: 'transparent',
+        display: 'block',
+        backgroundColor: theme.colors.grey[5],
+        padding: `${theme.spacing[2]}px`,
+        borderRadius: theme.borderRadius.default,
+        fontSize: theme.font.sizes.s,
     },
     styles: [
         {
@@ -102,6 +106,7 @@ const Code = ({ children, className, highlight, ...props }) => {
             {...defaultProps}
             code={children.trim()}
             language={language}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             theme={codeTheme}
         >

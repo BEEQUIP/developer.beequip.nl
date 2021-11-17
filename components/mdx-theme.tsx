@@ -2,6 +2,8 @@ import { useMemo } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
 import { MDXProvider } from '@mdx-js/react'
+import slugify from 'slugify'
+import innerText from 'react-innertext'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import {
     Heading,
@@ -14,6 +16,7 @@ import {
     Link as HexagonLink,
     theme,
 } from '@beequip/hexagon'
+import { Spacing } from '@beequip/hexagon/dist/theme/types'
 
 const codeTheme = {
     plain: {
@@ -88,11 +91,11 @@ const Code = ({ children, className, highlight, ...props }) => {
     const highlightedRanges = useMemo(() => {
         return highlight
             ? highlight.split(',').map((r) => {
-                  if (r.includes('-')) {
-                      return r.split('-')
-                  }
-                  return +r
-              })
+                if (r.includes('-')) {
+                    return r.split('-')
+                }
+                return +r
+            })
             : []
     }, [highlight])
 
@@ -123,10 +126,10 @@ const Code = ({ children, className, highlight, ...props }) => {
                                         : r === i + 1
                                 )
                                     ? {
-                                          background: '#cce0f5',
-                                          margin: '0 -1rem',
-                                          padding: '0 1rem',
-                                      }
+                                        background: '#cce0f5',
+                                        margin: '0 -1rem',
+                                        padding: '0 1rem',
+                                    }
                                     : null
                             }
                         >
@@ -170,13 +173,49 @@ const TableHeadCell = styled.th`
     text-align: left;
 `
 
-const H1 = styled(Heading)`
+const HeavyHeading = styled(Heading)`
     font-weight: 900;
 `
 
-const H2 = styled(Heading)`
+const OrangeHeading = styled(Heading)`
     color: ${(props) => props.theme.colors.orange};
 `
+
+const H1 = ({ children, ...props }) => {
+    const slug = slugify(innerText(children), {
+        lower: true,
+    })
+
+    return (
+        <HeavyHeading {...props} id={slug}>
+            {children}
+        </HeavyHeading>
+    )
+}
+
+const H2 = ({ children, ...props }) => {
+    const slug = slugify(innerText(children), {
+        lower: true,
+    })
+
+    return (
+        <OrangeHeading {...props} size={4} id={slug}>
+            {children}
+        </OrangeHeading>
+    )
+}
+
+const HX = ({ children, size, margin = 2, ...props }) => {
+    const slug = slugify(innerText(children), {
+        lower: true,
+    })
+
+    return (
+        <Heading size={size} id={slug} margin={margin as Spacing} {...props}>
+            {children}
+        </Heading>
+    )
+}
 
 const ListItem = styled.li`
     line-height: 1.5;
@@ -189,11 +228,11 @@ const StyledTable = styled(Table)`
 const markdownComponents = {
     a: Anchor,
     h1: H1,
-    h2: (props) => <H2 {...props} size={4} />,
-    h3: (props) => <Heading {...props} size={5} margin={0} />,
-    h4: (props) => <Heading {...props} size={6} />,
-    h5: (props) => <Heading {...props} size={6} margin={0} />,
-    h6: (props) => <Heading {...props} size={6} />,
+    h2: H2,
+    h3: (props) => <HX margin={0} size={4} {...props} />,
+    h4: (props) => <HX size={5} {...props} />,
+    h5: (props) => <HX size={6} margin={0} {...props} />,
+    h6: (props) => <HX size={6} {...props} />,
     p: (props) => <Text {...props} bottomMargin={2} />,
     code: Code,
     hr: HR,

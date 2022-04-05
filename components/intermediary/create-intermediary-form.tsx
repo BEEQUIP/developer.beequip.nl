@@ -7,7 +7,11 @@ import { getGraphQLError } from '@/utility/graphqlError'
 
 const validationSchema = yup.object().shape({
     name: yup.string().required('Please enter your company name'),
-    cocNumber: yup.string(),
+    cocNumber: yup
+        .string()
+        .required(
+            'Please enter the Chamber of Commerce number of your company'
+        ),
 })
 
 interface FormValues {
@@ -81,7 +85,7 @@ export function CreateIntermediaryForm(props: Props): JSX.Element {
                         </Field>
 
                         <Field
-                            label="Chamber of Commerce number (optional)"
+                            label="Chamber of Commerce number"
                             htmlFor="cocNumber"
                             error={
                                 props.touched.cocNumber &&

@@ -5,13 +5,16 @@ description: Get started with adding our calculator widget to your website
 
 import { Text } from '@beequip/hexagon'
 import { RequestToken } from '@/components/intermediary/request-token'
+import { CategoryTable } from '@/components/categories/CategoryTable'
 
 # Calculator widget
 
-<Text size="l" bottomMargin={4}>Embed Beequip lease calculations into your site</Text>
+<Text size="l" bottomMargin={4}>
+    Embed Beequip lease calculations into your site
+</Text>
 
 The calculator widget works best when placed on pages that showcase a single piece
-of equipment so its data can be used in the calculations. The widget has several 
+of equipment so its data can be used in the calculations. The widget has several
 configuration parameters, which you can read about below.
 
 ## Getting started
@@ -25,17 +28,13 @@ Add a piece of HTML to your web page with class `beequip-calculator`, in a locat
 Next, add the [required parameters](#required-parameters) with data-attributes, as described below.
 
 ```html
-<a href="https://lease.beequip.nl" class="beequip-calculator" data-brand="Caterpillar">
-    Lease equipment bij Beequip
-</a>
+<a href="https://lease.beequip.nl" class="beequip-calculator" data-brand="Caterpillar">Lease equipment bij Beequip</a>
 ```
 
 Finally, add a reference to a script hosted by Beequip. This script will render the widget.
 
 ```html
-<a href="https://lease.beequip.nl" class="beequip-calculator" data-category-id="13" data-brand="Caterpillar">
-    Lease equipment bij Beequip
-</a>
+<a href="https://lease.beequip.nl" class="beequip-calculator" data-category-id="13" data-brand="Caterpillar">Lease equipment bij Beequip</a>
 <script async src="https://widgets.beequip.nl/embed-calculator.js"></script>
 ```
 
@@ -43,7 +42,7 @@ Finally, add a reference to a script hosted by Beequip. This script will render 
 
 ### Parameters
 
-You can supply parameters to the widget to influence the layout, configure the calculation, 
+You can supply parameters to the widget to influence the layout, configure the calculation,
 or to pre-fill the widget’s input fields with data from your product’s page.
 
 #### Required parameters
@@ -54,19 +53,19 @@ These parameters must be supplied via `data-` attributes, otherwise the widget w
 
 ##### `token` string
 
-We use a unique token as an identifier for your organisation. 
+We use a unique token as an identifier for your organisation.
 
 ```html
 <a data-token="Xhpx7QT6xRF9ZHyABrxmm12Q">
 ```
 
 By adding this token to your widget, we can:
- 
-- Use your interest rates and pricing agreements in the lease calculations that the widget performs.
-- Track if a customer requests a deal coming from your website, and show that deal 
-in the Beeport. ([More information about Beeport and getting an account](https://www.beequip.nl/beeport/).)
 
-You can find your token on the settings page in your Beeport account.   
+-   Use your interest rates and pricing agreements in the lease calculations that the widget performs.
+-   Track if a customer requests a deal coming from your website, and show that deal
+    in the Beeport. ([More information about Beeport and getting an account](https://www.beequip.nl/beeport/).)
+
+You can find your token on the settings page in your Beeport account.  
 If you don't have a Beeport account, you can request a token with this form:
 
 <RequestToken />
@@ -98,7 +97,7 @@ The year the equipment was built.
 ##### `purchase-price` decimal
 
 The amount it costs to buy the equipment. This value is shown in an input field, and
-can be changed by the user.   
+can be changed by the user.  
 It is a required parameter so the widget can check whether the object is eligible for leasing.
 
 ⚠ The equipment should cost at least € 15.000. We don’t accept deals with a lower purchase price.
@@ -113,10 +112,10 @@ It is a required parameter so the widget can check whether the object is eligibl
 
 ---
 
-##### `category-id` integer 
+##### `category-id` integer
 
-With the category ID you can supply the asset category the equipment belongs to. Lookup the appropriate ID in 
-the [category table](#available-categories).   
+With the category ID you can supply the asset category the equipment belongs to. Lookup the appropriate ID in
+the [category table](#available-categories).  
 If you do not supply the category ID, a dropdown will be rendered where the user must choose a category.
 
 ```html
@@ -125,7 +124,7 @@ If you do not supply the category ID, a dropdown will be rendered where the user
 
 ##### `object-used` boolean
 
-Indicates the condition the equipment is in. `true` if it is used, `false` if it is new.   
+Indicates the condition the equipment is in. `true` if it is used, `false` if it is new.  
 Defaults to `true`.
 
 ```html
@@ -150,18 +149,18 @@ The height of the rendered widget, in pixels or a percentage. Defaults to 300 pi
 
 ##### `theme` string
 
-Customize the color scheme of the widget. Possible values are: 
+Customize the color scheme of the widget. Possible values are:
 
-- `dark`: the widget renders with a dark-grey background and white text.
-- `light`: the widget renders with a white background and dark-grey text.
-- `custom`: the widget renders with custom colors. These colors can be supplied with 
-6 other data-attributes:
-   - `data-color`
-   - `data-background-color`
-   - `data-primary-button-color`
-   - `data-primary-button-background-color`
-   - `data-secondary-button-background-color`
-   - `data-secondary-button-background-color`
+-   `dark`: the widget renders with a dark-grey background and white text.
+-   `light`: the widget renders with a white background and dark-grey text.
+-   `custom`: the widget renders with custom colors. These colors can be supplied with
+    6 other data-attributes:
+    -   `data-color`
+    -   `data-background-color`
+    -   `data-primary-button-color`
+    -   `data-primary-button-background-color`
+    -   `data-secondary-button-background-color`
+    -   `data-secondary-button-background-color`
 
 ⚠ All color attributes must be supplied, otherwise the custom theme won’t be applied.
 
@@ -236,42 +235,28 @@ Defaults to `true`.
 
 ---
 
-### Available categories
+### Available categories and subcategories
 
-These are the available options for the `category-id` parameter.
+These are the available options for the `category-id` and the `subcategory-id` parameter.
 
-ID | Description in Dutch | Description in English
--- | -------------------- | ----------------------
-1 | Energie | Energy
-2 | Grondverzet | Earthmoving
-3 | Wegtransport | Road transport
-4 | Containers | Containers
-5 | Bouw | Construction
-6 | Heftrucks | Forklifts
-7 | Kranen | Cranes
-8 | Agrarisch | Agriculture
-11 | Haven | Harbour
-13 | Maritiem | Maritime
-15 | Metaalbewerking | Metal processing
-16 | Spoor | Railway
-17 | Werkboten | Workboat
-18 | Binnenvaart | Inland navigation
-20 | SPMT | SPMT
+<CategoryTable />
 
 ## Examples
 
 ### Example widget with a few attributes
 
 ```html
-<a href="https://www.beequip.nl" class="beequip-calculator" 
-   data-brand="Caterpillar" 
-   data-model="AS 450" 
-   data-category-id="13" 
-   data-year="2019" 
-   data-purchase-price="30000" 
-   data-width="400" 
-   data-height="600" 
-   data-token="Xhpx7QT6xRF9ZHyABrxmm12Q">
+<a  href="https://www.beequip.nl"
+    class="beequip-calculator"
+    data-brand="Caterpillar"
+    data-model="AS 450"
+    data-category-id="13"
+    data-year="2019"
+    data-purchase-price="30000"
+    data-width="400"
+    data-height="600"
+    data-token="Xhpx7QT6xRF9ZHyABrxmm12Q"
+>
     Lease equipment bij Beequip
 </a>
 <script async src="https://widgets.beequip.nl/embed-calculator.js"></script>
@@ -281,16 +266,16 @@ ID | Description in Dutch | Description in English
 
 It's possible the widget does not show up, or does not work correctly. When starting to render, the widget performs a few
 checks to make sure the machine is eligible for leasing, and to ensure the widget is configured properly. If one of these
-checks fails, the widget will not render, and it will show a message with the probable cause in the developer console. 
+checks fails, the widget will not render, and it will show a message with the probable cause in the developer console.
 (To access the developer tools in your browser, press F12.)
 
 Common causes of problems are:
 
-- One of the [required parameters](#required-parameters) is missing. Check whether you have added all required parameters.
-- The data attributes that configure the widget are not added to the element with `class="beequip-calculator"`. The `class` and
-  the data attributes should be placed on the same HTML element.
-- The purchase price is too low. Objects with a purchase price of less than € 15.000 cannot be leased with Beequip.
-- The purchase price is formatted as currency. The purchase price should not contain any formatting, e.g. `data-purchase-price="€ 15.000"`
-  will not work, and should be changed to `data-purchase-price="15000"`.
-- One of the theming parameters has an incorrect value. The widget tries to build a working theme from the supplied parameters, and it
-  will fail if a theming parameter is not a valid CSS color.
+-   One of the [required parameters](#required-parameters) is missing. Check whether you have added all required parameters.
+-   The data attributes that configure the widget are not added to the element with `class="beequip-calculator"`. The `class` and
+    the data attributes should be placed on the same HTML element.
+-   The purchase price is too low. Objects with a purchase price of less than € 15.000 cannot be leased with Beequip.
+-   The purchase price is formatted as currency. The purchase price should not contain any formatting, e.g. `data-purchase-price="€ 15.000"`
+    will not work, and should be changed to `data-purchase-price="15000"`.
+-   One of the theming parameters has an incorrect value. The widget tries to build a working theme from the supplied parameters, and it
+    will fail if a theming parameter is not a valid CSS color.

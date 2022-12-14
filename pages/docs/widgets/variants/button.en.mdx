@@ -5,6 +5,7 @@ description: Get started with adding our button widget to your website
 
 import { Text } from '@beequip/hexagon'
 import { RequestToken } from '@/components/intermediary/request-token'
+import { CategoryTable } from '@/components/categories/CategoryTable'
 
 # Lease button widget
 
@@ -116,6 +117,17 @@ If you do not supply the category ID, a dropdown will be rendered where the user
 <a data-category-id="3">
 ```
 
+##### `subcategory-id` integer
+
+With the subcategory ID you can supply the asset subcategory the equipment belongs to. Lookup the appropriate ID in
+the [category table](#available-categories).
+If you do not supply the subcategory ID, a dropdown will be rendered where the user must choose a subcategory.
+If a subcategory is provided, a category id is mandatory.
+
+```html
+<a data-category-id="3" data-subcategory-id="4">
+```
+
 ##### `object-used` boolean
 
 Indicates the condition the equipment is in. `true` if it is used, `false` if it is new.  
@@ -169,28 +181,11 @@ This will change the text of the button. Defaults to “Bereken je lease”.
 
 ---
 
-### Available categories
+### Available categories and subcategories
 
-These are the available options for the `category-id` parameter.
+These are the available options for the `category-id` and the `subcategory-id` parameter.
 
-| ID  | Description in Dutch | Description in English |
-| --- | -------------------- | ---------------------- |
-| 1   | Energie              | Energy                 |
-| 2   | Grondverzet          | Earthmoving            |
-| 3   | Wegtransport         | Road transport         |
-| 4   | Containers           | Containers             |
-| 5   | Bouw                 | Construction           |
-| 6   | Heftrucks            | Forklifts              |
-| 7   | Kranen               | Cranes                 |
-| 8   | Agrarisch            | Agriculture            |
-| 11  | Haven                | Harbour                |
-| 12  | Recycling            | Recycling              |
-| 13  | Maritiem             | Maritime               |
-| 15  | Metaalbewerking      | Metal processing       |
-| 16  | Spoor                | Railway                |
-| 17  | Werkboten            | Workboat               |
-| 18  | Binnenvaart          | Inland navigation      |
-| 20  | SPMT                 | SPMT                   |
+<CategoryTable />
 
 ## Examples
 

@@ -1,0 +1,71 @@
+import React from 'react'
+import Link from 'next/link'
+import { Calculator } from '@styled-icons/boxicons-solid/Calculator'
+import { NetworkChart } from '@styled-icons/boxicons-solid/NetworkChart'
+import { Box, Heading, Text, media } from '@beequip/hexagon'
+import { Container } from '@/components/container'
+import { Jumbotron } from '@/components/jumbotron'
+import {
+    TaskGrid,
+    ProductCard,
+    MessageCard,
+    CalculatorIcon,
+    ApiIcon,
+    ProductLink,
+    MessageLink,
+    HugeBox,
+} from '@/components/home-page-styles'
+
+<Jumbotron>
+    <Heading level="1">Start building with Beequip integrations</Heading>
+    <Heading level="3" weight="400">
+        Beequip helps you sell equipment using our widgets and API’s. Explore
+        how to integrate your software with ours.
+    </Heading>
+</Jumbotron>
+<HugeBox>
+    <Container>
+        <Heading level="2">Getting started</Heading>
+        <Heading level="4">What do you want to do?</Heading>
+        <TaskGrid>
+            <ProductCard>
+                <div>
+                    <Heading level="4">
+                        <Link
+                            href="/leasing/widgets"
+                            passHref
+                            legacyBehavior
+                        >
+                            <ProductLink>
+                                Embed our leasing widgets
+                            </ProductLink>
+                        </Link>
+                    </Heading>
+                        <Text>Let your website’s visitors see our leasing prices for
+                        your equipment.</Text>
+                </div>
+                <CalculatorIcon size={48} />
+            </ProductCard>
+            <ProductCard>
+                <div>
+                    <Heading level="4">
+                        <Link
+                            href="/leasing/api"
+                            passHref
+                            legacyBehavior
+                        >
+                            <ProductLink>Use our leasing API</ProductLink>
+                        </Link>
+                    </Heading>
+                    <Text>Create your own custom lease calculator.</Text>
+                </div>
+                <ApiIcon size={48} />
+            </ProductCard>
+            <MessageCard>
+                <Heading level="4">Other integrations</Heading>
+                <Text>If you want to integrate in any other way, give us a call at [010 - 340 0844](tel:0103400844).</Text>
+            </MessageCard>
+        </TaskGrid>
+    </Container>
+
+</HugeBox>

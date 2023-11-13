@@ -11,4 +11,4 @@ yarn install
 yarn run dev
 ```
 
-The app will be available at `http://localhost:3001`.
+The app will be available at `http://localhost:8090`.

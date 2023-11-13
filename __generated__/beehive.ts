@@ -30,9 +30,9 @@ export type Scalars = {
     Boolean: { input: boolean; output: boolean }
     Int: { input: number; output: number }
     Float: { input: number; output: number }
-    DateTime: { input: any; output: any }
-    Date: { input: any; output: any }
     Currency: { input: any; output: any }
+    Date: { input: any; output: any }
+    DateTime: { input: any; output: any }
     Upload: { input: any; output: any }
 }
 

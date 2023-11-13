@@ -1,0 +1,219 @@
+---
+title: Guide to adding an object
+description: A guide to adding an object with the Beequip marketplace API
+---
+
+import { Notification } from '@beequip/hexagon'
+
+# Guide to adding an object with the API
+
+## Prerequistites
+
+This guide assumes you are [authenticated](./authenticating) and have a valid token.
+
+The simplified steps you need to take are:
+
+1. Add a company with the mutation `addCompany`.
+2. Fetch categories to find out the `id` of the category the object should be placed in, with the query `categoryGroups`.
+3. Find out if the object is eligible for placement with the query `canObjectBePlaced`.
+4. Add an object with the mutation `addObject`.
+5. When the object is sold, call the mutation `deleteObject`.
+
+<br />
+<Notification type="warning">
+    The examples in this guide do not take error handling into account.
+</Notification>
+
+## Adding a company
+
+If you act as an intermediary for multiple companies that want to push equipment, you need to call the mutation `addCompany` for each company. If you only manage your own company, you should just call it once.
+
+The mutation `addCompany` expects information about the company and its location. The mutation should look something like this:
+
+```graphql
+mutation AddCompany {
+    addCompany(
+        input: {
+            chamberOfCommerceNumber: "63204258"
+            name: "Beequip"
+            street: "Willemskade"
+            houseNumber: "18"
+            postalCode: "3016 DL"
+            city: "Rotterdam"
+            telephoneNumber: "010 340 0844"
+            website: "https://beequip.com"
+        }
+    ) {
+        ... on AddCompanySuccess {
+            company {
+                id
+                url
+            }
+        }
+    }
+}
+```
+
+When this example mutation is executed, it wil return the `id` and `url` of the newly created company.
+
+<br />
+<Notification type="message">
+    Since GraphQL gives you control of what data you request, you can select
+    more fields of the company to be returned.
+</Notification>
+
+We will be notified if you add a new company, and will review if we want them on our marketplace.
+
+## Fetching categories
+
+When adding an object, we need an `id` of the category the object belongs to. You can fetch a list of categories we use:
+
+```graphql
+query Categories {
+    categoryGroups {
+        id
+        name
+        categories {
+            id
+            name
+        }
+    }
+}
+```
+
+The result is a list of categories, for example:
+
+```json
+{
+    "data": {
+        "categoryGroups": [
+            {
+                "id": "1",
+                "name": "Agrarisch",
+                "categories": [
+                    {
+                        "id": "1",
+                        "name": "Agrarisch transport"
+                    }
+                ]
+            },
+            {
+                "id": "9",
+                "name": "Kranen",
+                "categories": [
+                    {
+                        "id": "19",
+                        "name": "Mobiele telescoopkraan"
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+
+You can use these `id`’s to make an internal mapping of your categories to our categories.
+
+## Check if the object can be placed
+
+We do not accept all equipment on our marketplace. One of these conditions is that we should be able to provide a lease for the object.
+
+We’ve hidden our placement rules behind a query `canObjectBePlaced`. Call this before adding an object with `addObject`.
+
+```graphql
+query CanObjectBePlaced {
+    canObjectBePlaced(
+        input: {
+            brand: "DAF"
+            type: "XF 480"
+            categoryId: 9
+            purchasePrice: { publicPurchasePrice: 40000 }
+            used: true
+            yearOfConstruction: 2022
+        }
+    ) {
+        ... on CanObjectBePlacedSuccess {
+            verdict {
+                ... on CanBePlaced {
+                    canBePlaced
+                }
+                ... on CannotBePlaced {
+                    canBePlaced
+                    rejectionReasons
+                }
+            }
+        }
+    }
+}
+```
+
+The response would be something like this:
+
+```json
+{
+    "data": {
+        "canObjectBePlaced": {
+            "verdict": {
+                "canBePlaced": true
+            }
+        }
+    }
+}
+```
+
+If `canBePlaced` is `true`, you’re free to call `addObject`.
+
+## Adding an object
+
+To publish a piece of equipment on our marketplace, call the mutation `addObject`. An example:
+
+```graphql
+mutation AddObject {
+    addObject(
+        input: {
+            companyId: 1
+            brand: "DAF"
+            type: "XF 480"
+            categoryId: 9
+            purchasePrice: { publicPurchasePrice: 40000 }
+            used: true
+            yearOfConstruction: 2022
+        }
+    ) {
+        ... on AddObjectSuccess {
+            object {
+                id
+                url
+            }
+        }
+    }
+}
+```
+
+<br />
+<Notification type="message">
+    `addObject` accepts loads more properties than this example shows. The more
+    properties you send, the better the conversion rate on our marketplace. Use
+    your GraphQL tool to find the input type `AddObjectInput` and see what data
+    you can send.
+</Notification>
+
+## Deleting an object
+
+When an object is sold or no longer in the company’s inventory, you need to call `deleteObject`. This will soft-delete the object: the URL will still be accessible, but the object will no longer appear in searches and overviews on our marketplace.
+
+```graphql
+mutation DeleteObject {
+    deleteObject(input: { id: 1 }) {
+        ... on DeleteObjectSuccess {
+            company {
+                url
+            }
+        }
+    }
+}
+```
+
+## Further reading
+
+-   [Guide to error handling](./error-handling)

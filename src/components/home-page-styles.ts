@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 import { Calculator } from '@styled-icons/boxicons-solid/Calculator'
 import { NetworkChart } from '@styled-icons/boxicons-solid/NetworkChart'
-import { Box, media } from '@beequip/hexagon'
+import { Store } from '@styled-icons/boxicons-solid/Store'
+import { Box, Heading, media, Text } from '@beequip/hexagon'
 
 export const TaskGrid = styled.div`
     display: grid;
@@ -17,10 +18,21 @@ export const CardBase = styled.article`
     display: flex;
     padding: ${(props) => props.theme.spacing[2]}px;
     border-radius: ${(props) => props.theme.borderRadius.default}px;
+    justify-content: space-between;
 `
 
 export const ProductCard = styled(CardBase)`
     box-shadow: ${(props) => props.theme.shadow.small};
+
+    .dark & {
+        background-color: #fff;
+    }
+`
+
+export const DarkThemedHeading = styled(Heading)`
+    .dark & {
+        color: #fff;
+    }
 `
 
 export const MessageCard = styled(CardBase)`
@@ -39,14 +51,15 @@ export const ApiIcon = styled(NetworkChart)`
     color: ${(props) => props.theme.colors.primary};
 `
 
+export const StoreIcon = styled(Store)`
+    margin-left: ${(props) => props.theme.spacing[1]}px;
+    color: ${(props) => props.theme.colors.primary};
+`
+
 export const ProductLink = styled.a`
     color: ${(props) => props.theme.colors.accent};
 `
 
 export const MessageLink = styled.a`
     color: ${(props) => props.theme.colors.white};
-`
-
-export const HugeBox = styled(Box)`
-    margin-bottom: 100px;
 `

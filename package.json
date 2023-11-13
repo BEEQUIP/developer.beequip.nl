@@ -6,7 +6,7 @@
     "private": true,
     "scripts": {
         "audit": "npx audit-ci@^6 --config ./audit-ci.jsonc",
-        "dev": "next --port 3001",
+        "dev": "next --port 8090",
         "build": "next build",
         "start": "next start",
         "graphql:generate-types": "graphql-codegen",

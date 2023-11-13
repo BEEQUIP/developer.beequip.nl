@@ -28,6 +28,9 @@
       "@/graphql/*": [
         "src/graphql/*"
       ],
+      "@/snippets/*": [
+        "src/snippets/*"
+      ],
       "@/types/*": [
         "types/*"
       ],

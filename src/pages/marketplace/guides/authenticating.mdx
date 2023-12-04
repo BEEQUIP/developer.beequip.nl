@@ -1,0 +1,90 @@
+---
+title: Authenticating
+description: How to authenticate with the marketplace GraphQL API
+---
+
+import { Notification } from '@beequip/hexagon'
+
+# Authenticating
+
+The marketplace API uses an [OAuth 2 client credentials](https://oauth.net/2/grant-types/client-credentials/) flow to authenticate requests. In short, you use your credentials to fetch an access token. Then, you sign further GraphQL query and mutation requests with this token.
+
+1. Obtain credentials.
+2. Get a token.
+3. Make a GraphQL call.
+
+<br />
+<Notification type="warning">
+    These instructions are for development. When you're ready to go to
+    production, follow [these instructions](#going-to-production).
+</Notification>
+
+## Obtain credentials
+
+To authenticate with the API, you need a `client_id` and `client_secret`.  
+When developing, you also need credentials to access our testing environment.
+
+These will be provided by Beequip. Call us at [010 - 340 0844](tel:0103400844) if you're interested in using the marketplace API.
+
+## Get a token
+
+Make a request to https://staging.beequip.com/marktplaats/api/oauth2/token/ to fetch an access token. (Replace `<client_id>` and `<client_secret>` with your own credentials, and `testing_password` with the password for the testing environment.)
+
+```bash
+curl -d '{"client_id":"<client_id>", "client_secret":"<client_secret>", "grant_type":"client_credentials"}' \
+    -H "Content-Type: application/json" \
+    -H "Proxy-Authorization: Basic <testing_password>" \
+    -X POST https://staging.beequip.com/marktplaats/api/oauth2/token/
+```
+
+This will yield an access token response.
+
+```json
+{
+    "token_type": "Bearer",
+    "access_token": "<token>",
+    "expires_in": 3600
+}
+```
+
+This token will be valid for one hour, after which you will need to fetch a new access token.
+
+## Make a GraphQL call
+
+Add the access token to the `Authorization` header and make a GraphQL request.
+
+```bash
+curl -H "Authorization: Bearer <token>" \
+    -H "Proxy-Authorization: Basic <testing_password>" \
+    -X POST -d "{\"query\": \"query { categoryGroups { name } }\" } \" \
+    https://staging.beequip.com/marktplaats/api/graphql/
+```
+
+This will yield a list of categories of the marketplace.
+
+```json
+{
+    "data": {
+        "categoryGroups": [
+            {
+                "name": "Agrarisch"
+            },
+            {
+                "name": "Energie"
+            },
+            {
+                "name": "Wegtransport"
+            }
+        ]
+    }
+}
+```
+
+## Going to production
+
+To make your integration ready for a first release to production, you will need to change these things:
+
+1.  The URL to get your token should change to https://beequip.com/marktplaats/api/oauth2/token/
+2.  The URL for your GraphQL requests should change to https://beequip.com/marktplaats/api/graphql/
+3.  You can omit the `Proxy-Authorization` header. (Nothing will break if you still send it, though.)
+4.  You will need a new `client_id` and `client_secret` for the production environment.

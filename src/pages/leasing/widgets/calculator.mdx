@@ -1,0 +1,304 @@
+---
+title: Embed our calculator widget
+description: Get started with adding our calculator widget to your website
+---
+
+import { Notification, Text } from '@beequip/hexagon'
+import { RequestToken } from '@/components/intermediary/request-token'
+import { CategoryTable } from '@/components/categories/CategoryTable'
+
+# Calculator widget
+
+The calculator widget works best when placed on pages that showcase a single piece
+of equipment so its data can be used in the calculations. The widget has several
+configuration parameters, which you can read about below.
+
+## Getting started
+
+Add a piece of HTML to your web page with class `beequip-calculator`, in a location where you want the calculator widget to render.
+
+```html
+<a href="https://lease.beequip.com" class="beequip-calculator"
+    >Lease equipment bij Beequip</a
+>
+```
+
+Next, add the [required parameters](#required-parameters) with data-attributes, as described below.
+
+```html
+<a
+    href="https://lease.beequip.com"
+    class="beequip-calculator"
+    data-brand="Caterpillar"
+    >Lease equipment bij Beequip</a
+>
+```
+
+Finally, add a reference to a script hosted by Beequip. This script will render the widget.
+
+```html
+<a
+    href="https://lease.beequip.com"
+    class="beequip-calculator"
+    data-category-id="13"
+    data-brand="Caterpillar"
+    >Lease equipment bij Beequip</a
+>
+<script async src="https://widgets.beequip.nl/embed-calculator.js"></script>
+```
+
+## How it works
+
+### Parameters
+
+You can supply parameters to the widget to influence the layout, configure the calculation,
+or to pre-fill the widget’s input fields with data from your product’s page.
+
+#### Required parameters
+
+These parameters must be supplied via `data-` attributes, otherwise the widget will not work.
+
+---
+
+##### `token`
+
+We use a unique token string as an identifier for your organisation.
+
+```html
+<a data-token="YOUR_TOKEN_HERE"></a>
+```
+
+By adding this token to your widget, we can:
+
+-   Use your interest rates and pricing agreements in the lease calculations that the widget performs.
+-   Track if a customer requests a deal coming from your website, and show that deal
+    in the Beeport. ([More information about Beeport and getting an account](https://beequip.com/nl/beeport-account-aanmaken-dealers-handelaren/).)
+
+You can find your token on the settings page in your Beeport account.  
+If you don't have a Beeport account, you can request a token with this form:
+
+<RequestToken />
+
+---
+
+##### `brand`
+
+A string representing the brand/manufacturer of the equipment.
+
+```html
+<a data-brand="Caterpillar"></a>
+```
+
+##### `model`
+
+A string representing the model of the equipment.
+
+```html
+<a data-model="AS 450"></a>
+```
+
+##### `year`
+
+An integer representing the year the equipment was built.
+
+```html
+<a data-year="2017"></a>
+```
+
+##### `purchase-price`
+
+The decimal amount it costs to buy the equipment. This value is shown in an input field, and
+can be changed by the user.  
+It is a required parameter so the widget can check whether the object is eligible for leasing.
+
+```html
+<a data-purchase-price="15000"></a>
+```
+
+<br />
+<Notification type="warning">
+    The equipment should cost at least € 15.000. We don’t accept deals with a
+    lower purchase price.
+</Notification>
+
+---
+
+#### Optional parameters
+
+---
+
+##### `category-id`
+
+An integer representing the asset category the equipment belongs to. Lookup the appropriate ID in
+the [category table](#available-categories).  
+If you do not supply the category ID, a dropdown will be rendered where the user must choose a category.
+
+```html
+<a data-category-id="3"></a>
+```
+
+##### `subcategory-id` integer
+
+An integer representing the sub subcategory the equipment belongs to. Lookup the appropriate ID in
+the [category table](#available-categories).
+If you do not supply the subcategory ID, a dropdown will be rendered where the user must choose a subcategory.
+If a subcategory is provided, a category id is mandatory.
+
+##### `object-used`
+
+A boolean indicating the condition the equipment is in. `true` if it is used, `false` if it is new.  
+Defaults to `true`.
+
+```html
+<a data-object-used="false"></a>
+```
+
+##### `width`
+
+An integer indicating the width of the rendered widget, in pixels or a percentage. Defaults to 300 pixels.
+
+```html
+<a data-width="400"></a>
+```
+
+##### `height`
+
+An integer indicating the height of the rendered widget, in pixels or a percentage. Defaults to 300 pixels.
+
+```html
+<a data-width="600"></a>
+```
+
+##### `theme`
+
+A string to customize the color scheme of the widget. Possible values are:
+
+-   `dark`: the widget renders with a dark-grey background and white text.
+-   `light`: the widget renders with a white background and dark-grey text.
+-   `custom`: the widget renders with custom colors. These colors can be supplied with
+    6 other data-attributes:
+    -   `data-color`
+    -   `data-background-color`
+    -   `data-primary-button-color`
+    -   `data-primary-button-background-color`
+    -   `data-secondary-button-background-color`
+    -   `data-secondary-button-background-color`
+
+⚠ All color attributes must be supplied, otherwise the custom theme won’t be applied.
+
+Defaults to `light`.
+
+```html
+<a data-theme="dark"></a>
+```
+
+##### `color`
+
+A string that will set the text color of the body copy to the given value. The value
+can be any valid CSS color.
+
+```html
+<a data-color="#333"></a>
+```
+
+##### `background-color`
+
+A string that will set the background color of the entire widget to the given value. The value
+can be any valid CSS color.
+
+```html
+<a data-background-color="rgb(255, 161, 0)"></a>
+```
+
+##### `primary-button-color`
+
+A string that will set the text color of the primary button to the given value. The value
+can be any valid CSS color.
+
+```html
+<a data-primary-button-color="#056fff"></a>
+```
+
+##### `primary-button-background-color`
+
+A string that will set the background color of the primary button to the given value. The value
+can be any valid CSS color.
+
+```html
+<a data-primary-button-background-color="rgb(0, 0, 0)"></a>
+```
+
+##### `secondary-button-color`
+
+A string that will set the text color of the secondary button to the given value. The value
+can be any valid CSS color.
+
+```html
+<a data-secondary-button-color="#056fff"></a>
+```
+
+##### `secondary-button-background-color`
+
+A string that will set the background color of the secondary button to the given value. The value
+can be any valid CSS color.
+
+```html
+<a data-secondary-button-background-color="rgb(0, 0, 0)"></a>
+```
+
+##### `show-logo`
+
+A boolean indicating whether the logo of Beequip will be shown in the widget.
+Defaults to `true`.
+
+```html
+<a data-show-logo="false"></a>
+```
+
+---
+
+### Available categories and subcategories
+
+These are the available options for the `category-id` and the `subcategory-id` parameter.
+
+<CategoryTable />
+
+## Examples
+
+### Example widget with a few attributes
+
+```html
+<a
+    href="https://www.beequip.nl"
+    class="beequip-calculator"
+    data-brand="Caterpillar"
+    data-model="AS 450"
+    data-category-id="13"
+    data-year="2019"
+    data-purchase-price="30000"
+    data-width="400"
+    data-height="600"
+    data-token="Xhpx7QT6xRF9ZHyABrxmm12Q"
+>
+    Lease equipment bij Beequip
+</a>
+<script async src="https://widgets.beequip.nl/embed-calculator.js"></script>
+```
+
+## Troubleshooting
+
+It's possible the widget does not show up, or does not work correctly. When starting to render, the widget performs a few
+checks to make sure the machine is eligible for leasing, and to ensure the widget is configured properly. If one of these
+checks fails, the widget will not render, and it will show a message with the probable cause in the developer console.
+(To access the developer tools in your browser, press F12.)
+
+Common causes of problems are:
+
+-   One of the [required parameters](#required-parameters) is missing. Check whether you have added all required parameters.
+-   The data attributes that configure the widget are not added to the element with `class="beequip-calculator"`. The `class` and
+    the data attributes should be placed on the same HTML element.
+-   The purchase price is too low. Objects with a purchase price of less than € 15.000 cannot be leased with Beequip.
+-   The purchase price is formatted as currency. The purchase price should not contain any formatting, e.g. `data-purchase-price="€ 15.000"`
+    will not work, and should be changed to `data-purchase-price="15000"`.
+-   One of the theming parameters has an incorrect value. The widget tries to build a working theme from the supplied parameters, and it
+    will fail if a theming parameter is not a valid CSS color.

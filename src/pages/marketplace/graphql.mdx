@@ -1,0 +1,50 @@
+---
+title: About GraphQL
+description: An introduction to GraphQL.
+---
+
+import { Notification } from '@beequip/hexagon'
+
+# About GraphQL
+
+GraphQL is different from REST: it has a schema and a type system. GraphQL is also not that different from REST: requests and responses are JSON.
+
+## Terms
+
+### Schema
+
+The schema defines what data can be accessed, so-called objects and fields. Requests are [validated](https://graphql.org/learn/validation/) and [executed](https://graphql.org/learn/execution/) against the schema. You can view the schema using so-called schema introspection. You can perform an introspection [manually](https://graphql.org/learn/introspection/) by querying the schema itself, or by using a GraphQL tool with a schema browser. You can use these tools to discover the API’s possibilities. Some of these tools are:
+
+-   [Insomnia](https://insomnia.rest/)
+-   [Postman](https://www.postman.com/)
+
+### Fields
+
+A field is a piece of data you can retrieve from an object. This can be another object, or a scalar value.
+
+The [official spec](http://spec.graphql.org/June2018/#sec-Language.Fields) about fields:
+
+> All GraphQL operations must specify their selections down to fields which return scalar values to ensure an unambiguously shaped response.
+
+This means you must add nested fields until all fields return scalars.
+
+### Queries
+
+Queries can be considered functions you can call to retrieve data. A query is an entrypoint to the schema.
+
+### Mutations
+
+Mutations can be considered function you can call to send data.
+
+### Argument
+
+Some fields require arguments. For example, most mutations use arguments to allow you to specify what data to store.
+
+### Union
+
+Most queries and mutations can return multiple types of result, a so-called union. Unions allow you to distinguish between these different types of result. We primarily use this for [error handling](./guides/error-handling).
+
+## Resources
+
+-   [GraphQL.org](https://graphql.org/learn/)
+-   [GraphQL queries using Insomnia](https://docs.insomnia.rest/insomnia/graphql-queries)

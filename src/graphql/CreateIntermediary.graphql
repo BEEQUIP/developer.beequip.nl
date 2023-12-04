@@ -1,0 +1,12 @@
+mutation CreateIntermediary($input: PublicCreateIntermediaryInput) {
+    publicCreateIntermediary(input: $input) {
+        intermediary {
+            cocNumber
+            createdAt
+            id
+            name
+            token
+            updatedAt
+        }
+    }
+}

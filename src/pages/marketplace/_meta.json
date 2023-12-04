@@ -1,0 +1,14 @@
+{
+    "index": {
+        "title": "Introduction"
+    },
+    "graphql": {
+        "title": "About GraphQL"
+    },
+    "guides": {
+        "title": "Guides"
+    },
+    "reference": {
+        "title": "Reference"
+    }
+}

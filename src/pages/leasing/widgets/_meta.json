@@ -1,0 +1,11 @@
+{
+    "button": {
+        "title": "Button widget"
+    },
+    "calculator": {
+        "title": "Calculcator widget"
+    },
+    "changelog": {
+        "title": "Changelog"
+    }
+}

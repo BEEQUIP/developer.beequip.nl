@@ -1,0 +1,102 @@
+For example, the `addCompany` mutation has several outcomes:
+
+-   `AddCompanySuccess`
+-   `ChamberOfCommerceNumberNotResolvedError`
+-   `UnexpectedError`
+
+Add these to your query:
+
+```graphql
+mutation AddCompany {
+    addCompany(
+        input: {
+            chamberOfCommerceNumber: "63204258"
+            name: "Beequip"
+            street: "Willemskade"
+            houseNumber: "18"
+            postalCode: "3016 DL"
+            city: "Rotterdam"
+            telephoneNumber: "010 340 0844"
+            website: "https://beequip.com"
+        }
+    ) {
+        __typename
+        ... on AddCompanySuccess {
+            company {
+                id
+                name
+                url
+            }
+        }
+        ... on ChamberOfCommerceNumberNotResolvedError {
+            message
+        }
+        ... on UnexpectedError {
+            message
+        }
+    }
+}
+```
+
+Notice the `__typename` field. This lets you distinguish between errors and a successful result. When the mutation fails due to a `ChamberOfCommerceNumberNotResolvedError`, you can see that in the results:
+
+```json
+{
+    "data": {
+        "addCompany": {
+            "__typename": "ChamberOfCommerceNumberNotResolvedError",
+            "message": "The given Chamber of Commerce number could not be resolved. Perhaps it is invalid or does not belong to an existing Chamber of Commerce registration."
+        }
+    }
+}
+```
+
+You can use in your client code this to handle each error differently.
+
+Similarly, this lets you check if the result was successful:
+
+```json
+{
+    "data": {
+        "addCompany": {
+            "__typename": "AddCompanySuccess",
+            "company": {
+                "id": "1",
+                "name": "Beequip",
+                "url": "https://beequip.com/marktplaats/companies/1-beequip/"
+            }
+        }
+    }
+}
+```
+
+One optimization you can use is to query the common interface `Error` instead of each error individually:
+
+```graphql
+mutation AddCompany {
+    addCompany(
+        input: {
+            chamberOfCommerceNumber: "63204258"
+            name: "Beequip"
+            street: "Willemskade"
+            houseNumber: "18"
+            postalCode: "3016 DL"
+            city: "Rotterdam"
+            telephoneNumber: "010 340 0844"
+            website: "https://beequip.com"
+        }
+    ) {
+        __typename
+        ... on AddCompanySuccess {
+            company {
+                id
+                name
+                url
+            }
+        }
+        ... on Error {
+            message
+        }
+    }
+}
+```

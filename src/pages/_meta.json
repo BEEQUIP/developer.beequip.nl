@@ -1,0 +1,18 @@
+{
+    "index": {
+        "type": "page",
+        "title": "Beequip Developer",
+        "display": "hidden",
+        "theme": {
+          "layout": "raw"
+        }
+    },
+    "leasing": {
+        "type": "page",
+        "title": "Leasing"
+    },
+    "marketplace": {
+        "type": "page",
+        "title": "Marketplace"
+    }
+}

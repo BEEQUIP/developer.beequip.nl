@@ -1,0 +1,117 @@
+---
+title: Troubleshooting
+description: Common problems that can occur when using the marketplace GraphQL API
+---
+
+# Troubleshooting
+
+You might run into a problem you don't know how to solve. This guide lists common issues and their possible solutions.
+
+### No body returned for response or 401 Not Authorized
+
+You're not sending the appropriate headers. [Add the headers](/marketplace/guides/authenticating#make-a-graphql-call) and try again.
+
+### TokenExpiredError: jwt expired
+
+JWT stands for JSON Web Token. It's the mechanism the marketplace API uses for authentication. These tokens are only valid for one hour, and yours has expired. You need to [fetch a new token](/marketplace/guides/authenticating#get-a-token).
+
+### Empty result
+
+You're sending a query or mutation with return fields, but they don't show up in the result. This probably means an error has occured, but you're not querying the errors.
+
+For example, if you're updating a company:
+
+```graphql
+mutation {
+    updateCompany(
+        input: {
+            id: 1
+            city: "Rotterdam"
+            description: "Hand in hand, kameraden."
+            houseNumber: "18"
+            name: "Feyenoord Rotterdam"
+            postalCode: "3007 AP"
+            street: "Kuipweg"
+            telephoneNumber: "0900 – 1908"
+            website: "https://www.feyenoord.nl/"
+        }
+    ) {
+        ... on UpdateCompanySuccess {
+            company {
+                id
+                url
+                city
+                description
+                houseNumber
+                name
+                postalCode
+                street
+            }
+        }
+    }
+}
+```
+
+This should return several company fields when the mutation is done, but somehow this is your result:
+
+```json
+{
+    "data": {
+        "updateCompany": {}
+    }
+}
+```
+
+You should update the mutation to also query possible errors:
+
+```graphql {27-30}
+mutation {
+    updateCompany(
+        input: {
+            id: 1
+            city: "Rotterdam"
+            description: "Hand in hand, kameraden."
+            houseNumber: "18"
+            name: "Feyenoord Rotterdam"
+            postalCode: "3007 AP"
+            street: "Kuipweg"
+            telephoneNumber: "0900 – 1908"
+            website: "https://www.feyenoord.nl/"
+        }
+    ) {
+        ... on UpdateCompanySuccess {
+            company {
+                id
+                url
+                city
+                description
+                houseNumber
+                name
+                postalCode
+                street
+            }
+        }
+        ... on Error {
+            __typename
+            message
+        }
+    }
+}
+```
+
+Run the mutation again and you might get a different result, like so:
+
+```json {4-5}
+{
+    "data": {
+        "updateCompany": {
+            "__typename": "CompanyNotFoundError",
+            "message": "The company with id 1 does not exist."
+        }
+    }
+}
+```
+
+This means the mutation tries to update a company that does not exist. The `id` parameter should be changed to the `id` of an existing company. (You might get a different error in your specific case.)
+
+Read the guide on [error handling](/marketplace/guides/error-handling) for more information.

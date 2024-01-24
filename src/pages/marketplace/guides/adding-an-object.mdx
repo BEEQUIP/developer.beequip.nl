@@ -15,9 +15,8 @@ The simplified steps you need to take are:
 
 1. Add a company with the mutation `addCompany`.
 2. Fetch categories to find out the `id` of the category the object should be placed in, with the query `categoryGroups`.
-3. Find out if the object is eligible for placement with the query `canObjectBePlaced`.
-4. Add an object with the mutation `addObject`.
-5. When the object is sold, call the mutation `deleteObject`.
+3. Add an object with the mutation `addObject`.
+4. When the object is sold, call the mutation `deleteObject`.
 
 <br />
 <Notification type="warning">
@@ -113,55 +112,6 @@ The result is a list of categories, for example:
 ```
 
 You can use these `id`’s to make an internal mapping of your categories to our categories.
-
-## Check if the object can be placed
-
-We do not accept all equipment on our marketplace. One of these conditions is that we should be able to provide a lease for the object.
-
-We’ve hidden our placement rules behind a query `canObjectBePlaced`. Call this before adding an object with `addObject`.
-
-```graphql
-query CanObjectBePlaced {
-    canObjectBePlaced(
-        input: {
-            brand: "DAF"
-            type: "XF 480"
-            categoryId: 9
-            purchasePrice: 40000
-            used: true
-            yearOfConstruction: 2022
-        }
-    ) {
-        ... on CanObjectBePlacedSuccess {
-            verdict {
-                ... on CanBePlaced {
-                    canBePlaced
-                }
-                ... on CannotBePlaced {
-                    canBePlaced
-                    rejectionReasons
-                }
-            }
-        }
-    }
-}
-```
-
-The response would be something like this:
-
-```json
-{
-    "data": {
-        "canObjectBePlaced": {
-            "verdict": {
-                "canBePlaced": true
-            }
-        }
-    }
-}
-```
-
-If `canBePlaced` is `true`, you’re free to call `addObject`.
 
 ## Adding an object
 

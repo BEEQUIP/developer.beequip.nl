@@ -6,3 +6,87 @@ description: How to handle errors in the marketplace GraphQL API
 import GraphQLErrorHandling from '@/snippets/graphql-error-handling.mdx'
 
 <GraphQLErrorHandling api="marketplace" />
+
+### Validation errors
+
+You might receive a `ValidationError` when executing a mutation:
+
+```graphql
+mutation AddCompany {
+	addCompany(
+		input: {
+            // ...
+		}
+	) {
+		... on AddCompanySuccess {
+			company {
+				id
+				url
+			}
+		}
+		... on Error {
+			message
+			__typename
+		}
+	}
+}
+```
+
+```json
+{
+    "data": {
+        "addCompany": {
+            "message": "Some fields contain invalid data. Query the ValidationError type for more specific error messages. Go to https://developer.beequip.nl/marketplace/guides/error-handling#validation-errors to see how to do this.",
+            "__typename": "ValidationError"
+        }
+    }
+}
+```
+
+This means one or more fields in your mutation contain invalid data, for example if a string is too long. If you query the `ValidationError` type specifically, you can see what is wrong with these fields:
+
+```graphql {17-22}
+mutation AddCompany {
+	addCompany(
+		input: {
+            // ...
+		}
+	) {
+		... on AddCompanySuccess {
+			company {
+				id
+				url
+			}
+		}
+		... on Error {
+			message
+			__typename
+		}
+        ... on ValidationError {
+			fieldErrors {
+				message
+				path
+			}
+		}
+	}
+}
+```
+
+This returns a message per field, and the field path inside the input:
+
+```json {6-11}
+{
+    "data": {
+        "addCompany": {
+            "message": "Some fields contain invalid data. Query the ValidationError type for more specified error messages. Go to https://developer.beequip.nl/marketplace/guides/error-handling#validation-errors to see how to do this.",
+            "__typename": "ValidationError",
+            "fieldErrors": [
+                {
+                    "message": "The company name should not exceed a length of 50 characters.",
+                    "path": ["input", "name"]
+                }
+            ]
+        }
+    }
+}
+```

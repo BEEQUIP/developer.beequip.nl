@@ -8,6 +8,8 @@ import MarketplaceApiErrors from '@/snippets/marketplace-api-errors.mdx'
 
 # Error handling
 
+## Querying for errors
+
 When calling a query or mutation, things might go wrong. The input might be invalid, the action you want to perform is invalid for the current state et cetera.
 
 GraphQL allows codifying possible errors in the schema, so you can see in advance what errors to expect. You can query these errors in your queries and mutations, using a so-called inline fragment: `... on Type`.

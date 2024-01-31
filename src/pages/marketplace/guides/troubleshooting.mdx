@@ -7,11 +7,15 @@ description: Common problems that can occur when using the marketplace GraphQL A
 
 You might run into a problem you don't know how to solve. This guide lists common issues and their possible solutions.
 
-### No body returned for response or 401 Not Authorized
+### 401 Not Authorized
+
+There's something wrong with your authorization header or your token. Read the returned error message for more details.
+
+### No body returned for response
 
 You're not sending the appropriate headers. [Add the headers](/marketplace/guides/authenticating#make-a-graphql-call) and try again.
 
-### TokenExpiredError: jwt expired
+### JWT expired at _some date_
 
 JWT stands for JSON Web Token. It's the mechanism the marketplace API uses for authentication. These tokens are only valid for one hour, and yours has expired. You need to [fetch a new token](/marketplace/guides/authenticating#get-a-token).
 

@@ -41,7 +41,7 @@
         "@graphql-codegen/cli": "^5.0.0",
         "@graphql-codegen/typescript-operations": "^4.0.1",
         "@graphql-codegen/typescript-react-apollo": "^4.1.0",
-        "@types/react": "^18.2.28",
+        "@types/react": "^18",
         "@types/styled-components": "^5.1.29",
         "eslint": "^8.52.0",
         "eslint-config-next": "^13.5.6",

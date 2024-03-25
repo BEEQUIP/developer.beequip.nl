@@ -1,0 +1,284 @@
+---
+title: Pagination
+description: How to paginate results in the marketplace GraphQL API
+---
+
+import { Notification } from '@beequip/hexagon'
+
+# Pagination
+
+The API provides pagination for data sets that can become quite large. All pagination is implemented using the [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm). With this pattern, you use cursors to traverse through a data set (so-called “Connections”). Each cursor represents a specific position in the data set. The limited number of returned nodes together is called a page. You use metadata (`pageInfo`) about the current page to determine where previous and next pages are. You can recognize a paginated field by the name: if it ends in `Connection`, you have to use pagination to retrieve data.
+
+<br />
+<Notification type="message">
+    The default number of nodes on a page is 20, while the maximum number of
+    nodes is 100.
+</Notification>
+
+## How it works
+
+To demonstrate pagination, we use the `viewer` query: it has a connection to companies.
+
+```graphql
+query Viewer {
+    viewer {
+        ... on User {
+            id
+            companies {
+                pageInfo {
+                    startCursor
+                    endCursor
+                    hasNextPage
+                    hasPreviousPage
+                }
+                edges {
+                    node {
+                        id
+                        name
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+Inside the connection `companies`, we can query for `pageInfo`, which contains metadata about pagination:
+
+-   `startCursor` contains the cursor of the first item on the page.
+-   `endCursor` contains the cursor of the last item on the page.
+-   `hasNextPage` is a boolean indicating whether there is a next page.
+-   `hasPreviousPage` is a boolean indicating whether there is a previous page.
+
+When executing this query, you will receive the first page, which looks something like this:
+
+```json
+{
+    "data": {
+        "viewer": {
+            "id": "1",
+            "companies": {
+                "pageInfo": {
+                    "startCursor": "R1BDOk46Ng==",
+                    "endCursor": "R1BDOk46MjY=",
+                    "hasNextPage": true,
+                    "hasPreviousPage": false
+                },
+                "edges": [
+                    {
+                        "cursor": "R1BDOk46Ng==",
+                        "node": {
+                            "id": "1",
+                            "name": "Beequip B.V."
+                        }
+                    }
+                    // More data
+                ]
+            }
+        }
+    }
+}
+```
+
+With this data, you can build follow-up requests for next or previous pages.
+
+## Forward navigation
+
+All connections provide an `after` argument to let you retrieve next pages. It determines the element _after_ which you want to return nodes.
+
+Using the previous example, `hasNextPage` is true so there is at least one more page, and `pageInfo` has an `endCursor` of `R1BDOk46MjY=`. To retrieve the next page, supply that cursor to `after`:
+
+```graphql {5}
+query Viewer {
+    viewer {
+        ... on User {
+            id
+            companies(after: "R1BDOk46MjY=") {
+                pageInfo {
+                    startCursor
+                    endCursor
+                    hasNextPage
+                    hasPreviousPage
+                }
+                edges {
+                    node {
+                        id
+                        name
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+This will yield a result like this:
+
+```json
+{
+    "data": {
+        "viewer": {
+            "id": "1",
+            "companies": {
+                "pageInfo": {
+                    "startCursor": "R1BDOk46Nw==",
+                    "endCursor": "R1BDOk46MTA=",
+                    "hasNextPage": false,
+                    "hasPreviousPage": true
+                },
+                "edges": [
+                    {
+                        "cursor": "R1BDOk46Nw==",
+                        "node": {
+                            "id": "2",
+                            "name": "Vandelay Industries"
+                        }
+                    }
+                    // More data
+                ]
+            }
+        }
+    }
+}
+```
+
+## Backward navigation
+
+Backward navigation is similar to forward navigation, only using the `before` argument. It determines the element _before_ which you want to return nodes.
+
+```graphql {5}
+query Viewer {
+    viewer {
+        ... on User {
+            id
+            companies(before: "R1BDOk46Nw==") {
+                pageInfo {
+                    startCursor
+                    endCursor
+                    hasNextPage
+                    hasPreviousPage
+                }
+                edges {
+                    node {
+                        id
+                        name
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+```json
+{
+    "data": {
+        "viewer": {
+            "id": "1",
+            "companies": {
+                "pageInfo": {
+                    "startCursor": "R1BDOk46Ng==",
+                    "endCursor": "R1BDOk46MjY=",
+                    "hasNextPage": true,
+                    "hasPreviousPage": false
+                },
+                "edges": [
+                    {
+                        "cursor": "R1BDOk46Ng==",
+                        "node": {
+                            "id": "1",
+                            "name": "Beequip B.V."
+                        }
+                    }
+                    // More data
+                ]
+            }
+        }
+    }
+}
+```
+
+## Changing the number of items
+
+Use the `first` or `last` arguments to change the number of nodes on a page.
+
+Combine `first` with `after` when navigating forward:
+
+```graphql {5}
+query Viewer {
+    viewer {
+        ... on User {
+            id
+            companies(first: 100, after: "R1BDOk46Ng==") {
+                pageInfo {
+                    startCursor
+                    endCursor
+                    hasNextPage
+                    hasPreviousPage
+                }
+                edges {
+                    node {
+                        id
+                        name
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+Combine `last` with `before` when navigating backward:
+
+```graphql {5}
+query Viewer {
+    viewer {
+        ... on User {
+            id
+            companies(last: 100, before: "R1BDOk46Ng==") {
+                pageInfo {
+                    startCursor
+                    endCursor
+                    hasNextPage
+                    hasPreviousPage
+                }
+                edges {
+                    node {
+                        id
+                        name
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+## Total number of items
+
+Each connection has a `totalCount` field that returns the total number of nodes in the data set.
+
+```graphql {6}
+query Viewer {
+    viewer {
+        ... on User {
+            id
+            companies {
+                totalCount
+                pageInfo {
+                    startCursor
+                    endCursor
+                    hasNextPage
+                    hasPreviousPage
+                }
+                edges {
+                    node {
+                        id
+                        name
+                    }
+                }
+            }
+        }
+    }
+}
+```

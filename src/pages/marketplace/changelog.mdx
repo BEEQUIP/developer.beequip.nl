@@ -1,0 +1,35 @@
+---
+title: Changelog
+description: Changes to Beequip’s marketplace API
+---
+
+# Changelog
+
+Past and upcoming changes to our marketplace API.
+
+Breaking changes are changes that will break behaviour of connecting clients. They will be anounced 3 months prior
+to their release to give clients ample time to make the required changes.
+
+## Upcoming breaking changes
+
+Currently planned: none.
+
+## Past changes
+
+### 9 July 2024
+
+- Field `model` was added to type `AddObjectInput`.
+  This was added to provide more granular details when adding an object. For example, when adding a “Citroën Berlingo 2.0 HDI”, you previously had to set the field `type` to “Berlingo 2.0 HDI”. With the new `model` field, you can set the `model` to “Berlingo” and `type` to “2.0 HDI”.
+- Field `model` was added to type `UpdateObjectInput`.
+- Field `model` was added to type `Object`.
+
+### 12 June 2024
+
+- Field `usage` on type `Object` was marked as deprecated. Use the fields `usageInKilometers` or `usageInOperatingHours` instead.
+- Field `usage` on type `AddObjectInput` was marked as deprecated. Use the fields `usageInKilometers` or `usageInOperatingHours` instead.
+- Field `usage` on type `UpdateObjectInput` was marked as deprecated. Use the fields `usageInKilometers` or `usageInOperatingHours` instead.
+- Query `canObjectBePlaced` was marked as deprecated. There is no replacement.
+
+### 28 March 2024
+
+- Field `propupsion` on type `Object` was marked as deprecated. Use the field `propulsion` instead.

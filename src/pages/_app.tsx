@@ -7,6 +7,7 @@ import { theme } from '@beequip/hexagon'
 import '../../node_modules/normalize.css/normalize.css'
 import { useApollo } from '@/utility/apolloClient'
 import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const gotham = localFont({
     src: [
@@ -66,6 +67,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
                 </ApolloProvider>
             </div>
             <Analytics />
+            <SpeedInsights />
         </>
     )
 }

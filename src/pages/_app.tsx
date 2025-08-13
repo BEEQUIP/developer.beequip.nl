@@ -51,6 +51,18 @@ const GlobalStyle = createGlobalStyle`
         outline: none !important;
         box-shadow: none !important;
     }
+    
+    [data-theme="dark"] .nx-logo .orange-fill,
+    .dark .nx-logo .orange-fill {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 1;
+    }
+    
+    [data-theme="dark"] .nx-logo .logo-text,
+    .dark .nx-logo .logo-text {
+        fill: #fff;
+    }
 `
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {

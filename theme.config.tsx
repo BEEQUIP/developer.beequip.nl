@@ -1,47 +1,44 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { DocsThemeConfig, useConfig } from 'nextra-theme-docs'
+import { DocsThemeConfig, useConfig, useTheme } from 'nextra-theme-docs'
 
-const logo = (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 818.05 230.49"
-        x="0"
-        y="0"
-        width="110px"
-        height="31px"
-    >
-        <path
-            fill="currentColor"
-            d="m0 183.47 81.83 47.02 81.83-47.02-81.83-47.02L0 183.47z"
-        />
-        <path
-            fill="currentColor"
-            d="M81.83 89.44 0 136.45v23.51l81.83-47.02 81.83 47.02v-23.51L81.83 89.44z"
-        />
-        <path
-            fill="currentColor"
-            d="m117.76 63.07 34.05-58.98L144.72 0l-34.05 58.99-28.84-16.57L53 58.99 18.94 0l-7.09 4.09L45.9 63.07 0 89.44v23.5l81.83-47.01 81.83 47.01v-23.5l-45.9-26.37z"
-        />
-        <path
-            fill="currentColor"
-            d="M223.66 89.44h48.22c11.82 0 20.15 2.96 25.66 8.33 3.76 3.9 6.04 8.86 6.04 15.31v.27c0 10.88-6.04 17.33-14.51 20.95 11.42 3.76 18.67 10.21 18.67 22.97v.27c0 16.25-13.03 25.92-35.6 25.92h-48.49V89.43Zm54.27 29.01c0-5.37-3.9-8.06-11.82-8.06h-17.06v16.52h16.39c8.06 0 12.49-2.69 12.49-8.19v-.27Zm3.76 35.19c0-5.24-4.03-8.46-12.76-8.46h-19.88v17.33h20.15c8.06 0 12.49-3.09 12.49-8.6v-.27Z"
-        />
-        <path
-            fill="currentColor"
-            d="M317.58 89.44h75.62v22.03h-49.83v14.37h45.13v20.55h-45.13v14.91h50.51v22.16h-76.3V89.43Z"
-        />
-        <path
-            fill="currentColor"
-            d="M405.71 89.44h75.62v22.03H431.5v14.37h45.13v20.55H431.5v14.91h50.51v22.16h-76.3V89.43Z"
-        />
-        <path
-            fill="currentColor"
-            d="M596.78 141.26V89.43h25.85v51.3c0 13.32 6.59 19.65 17.01 19.65s17.14-5.93 17.14-18.99V89.43h25.85v51.17c0 29.67-17.01 42.86-43.26 42.86s-42.6-13.19-42.6-42.2ZM697.27 89.44h26.06v94.03h-26.06V89.44ZM738.66 89.44h40.43c23.64 0 38.95 12.09 38.95 32.91v.27c0 22.3-17.06 33.98-40.3 33.98h-13.03v26.87h-26.06V89.44Zm38.55 46.74c9.13 0 14.91-4.84 14.91-12.36v-.27c0-8.06-5.78-12.22-15.04-12.22h-12.36v24.85h12.49ZM586.3 136.19c0-25.96-20.7-46.76-48.63-46.76s-48.89 21.05-48.89 47.02v.26c0 25.96 20.69 46.75 48.63 46.75h45.8l-9.06-15.53c7.66-8.36 12.14-19.39 12.14-31.48v-.26Zm-71.77.52v-.26c0-13.05 9.18-24.41 22.89-24.41s23.41 11.49 23.41 24.67v.26c0 13.07-8.86 24.28-23.15 24.28s-23.15-11.49-23.15-24.54"
-        />
-    </svg>
-)
+const Logo = () => {
+    const { resolvedTheme } = useTheme()
+    const [mounted, setMounted] = useState(false)
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+
+    const isDark = mounted && resolvedTheme === 'dark'
+
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 975.2 231.2"
+            width="110px"
+            height="31px"
+        >
+            <path
+                d="M245 58h59.2c14.5 0 24.7 3.6 31.5 10.2 4.6 4.8 7.4 10.9 7.4 18.8v.3c0 13.4-7.4 21.3-17.8 25.7 14 4.6 22.9 12.5 22.9 28.2v.3c0 20-16 31.8-43.7 31.8H245V58Zm66.6 35.6c0-6.6-4.8-9.9-14.5-9.9h-20.9V104h20.1c9.9 0 15.3-3.3 15.3-10.1v-.3Zm4.7 43.2c0-6.4-4.9-10.4-15.7-10.4h-24.4v21.3h24.7c9.9 0 15.3-3.8 15.3-10.6v-.3Zm44-78.8h92.9v27.1H392v17.7h55.4V128H392v18.3h62v27.2h-93.7V58Zm108.3 0h92.9v27.1h-61.2v17.7h55.4V128h-55.4v18.3h62v27.2h-93.7V58Zm234.6 63.6V58h31.7v63c0 16.4 8.1 24.1 20.9 24.1s21.1-7.3 21.1-23.3V58h31.7v62.8c0 36.4-20.9 52.6-53.1 52.6s-52.3-16.2-52.3-51.8ZM826.6 58h32v115.5h-32V58Zm50.8 0h49.7c29 0 47.8 14.8 47.8 40.4v.3c0 27.4-20.9 41.7-49.5 41.7h-16v33h-32V58Zm47.4 57.4c11.2 0 18.3-5.9 18.3-15.2v-.3c0-9.9-7.1-15-18.5-15h-15.2v30.5h15.3Zm-234.5 0c0-31.9-25.4-57.4-59.7-57.4s-60 25.9-60 57.7v.3c0 31.9 25.4 57.4 59.7 57.4h56.2l-11.1-19.1c9.4-10.3 14.9-23.8 14.9-38.7v-.3Zm-88.1.6v-.3c0-16 11.3-30 28.1-30S659 99.8 659 116v.3c0 16-10.9 29.8-28.4 29.8S602.2 132 602.2 116"
+                fill={isDark ? 'white' : 'black'}
+            />
+            <path
+                d="M100 29.1 15 78.2v28.9L100 58l85 49.1V78.2l-85-49.1z"
+                fill={isDark ? 'black' : '#ffa100'}
+            />
+            <path
+                d="m160.8 35.4 13.1-22.6L166.7.2h-14.4l-13.1 22.6L100 .2 60.8 22.8 47.8.2H33.4l-7.2 12.5 13.1 22.6L0 58v115.5l100 57.7 100-57.7V58l-39.2-22.6ZM185 164.8l-85-49.1-85 49.1v-28.9l85-49.1 85 49.1v28.9Zm0-57.7L100 58l-85 49.1V78.2l85-49.1 85 49.1v28.9Z"
+                fill={isDark ? 'white' : 'black'}
+            />
+            <path
+                d="m100 115.7 85 49.1v-28.9l-85-49.1-85 49.1v28.9l85-49.1z"
+                fill={isDark ? 'black' : '#ffa100'}
+            />
+        </svg>
+    )
+}
 
 const config: DocsThemeConfig = {
     darkMode: true,
@@ -76,27 +73,16 @@ const config: DocsThemeConfig = {
                 <link
                     rel="icon"
                     type="image/png"
-                    sizes="32x32"
-                    href="/favicon-32x32.png"
+                    sizes="96x96"
+                    href="/favicon-96x96.png"
                 />
-                <link
-                    rel="icon"
-                    type="image/png"
-                    sizes="16x16"
-                    href="/favicon-16x16.png"
-                />
+                <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
                 <link rel="manifest" href="/site.webmanifest" />
-                <link
-                    rel="mask-icon"
-                    href="/safari-pinned-tab.svg"
-                    color="#ffa100"
-                />
-                <meta name="msapplication-TileColor" content="#ffa100" />
                 <meta name="theme-color" content="#ffa100" />
             </>
         )
     },
-    logo,
+    logo: Logo,
     primaryHue: 38,
     primarySaturation: 100,
     project: {

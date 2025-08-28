@@ -1,12 +1,17 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { DocsThemeConfig, useConfig, useTheme } from 'nextra-theme-docs'
 
 const Logo = () => {
     const { resolvedTheme } = useTheme()
+    const [mounted, setMounted] = useState(false)
 
-    const isDark = resolvedTheme === 'dark'
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+
+    const isDark = mounted && resolvedTheme === 'dark'
 
     return (
         <svg
